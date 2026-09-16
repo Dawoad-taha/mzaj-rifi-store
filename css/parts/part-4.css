@@ -1,0 +1,564 @@
+html body section.subTitle-detail h1,
+html body section.subTitle-detail h2,
+html body section.subTitle-detail h3 {
+    display: inline-block !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+
+    font-weight: 700 !important;
+
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+
+    background-image: linear-gradient(
+        110deg,
+        #601f49 0%,
+        #7d285e 25%,
+        #b85389 42%,
+        #e99fbc 50%,
+        #b85389 58%,
+        #7d285e 75%,
+        #601f49 100%
+    ) !important;
+
+    background-size: 300% 100% !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+
+    animation:
+        mz-category-title-color
+        4s
+        ease-in-out
+        infinite !important;
+}
+
+@keyframes mz-category-title-color {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+/* =========================================
+   Breadcrumb - اللون الوردي المطلوب
+   ========================================= */
+
+html body section.breadcrumb-section nav ol.breadcrumb,
+html body section.breadcrumb-section ol.breadcrumb,
+html body ol.breadcrumb {
+    background: #ffeef4 !important;
+    background-color: #ffeef4 !important;
+
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+
+/* نخلي العناصر الداخلية شفافة */
+html body ol.breadcrumb li,
+html body ol.breadcrumb .breadcrumb-item,
+html body ol.breadcrumb a {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+/* =========================================================
+   PRODUCT PAGE - ACTION BUTTONS FINAL
+   ========================================================= */
+
+
+/* صف الأزرار */
+html body .mz-product-actions-row {
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: stretch !important;
+
+    gap: 8px !important;
+
+    margin: 12px 0 16px !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================
+   الزران يأخذان كامل العرض
+   ========================================= */
+
+html body
+.mz-product-actions-row
+.mz-product-buy-btn,
+
+html body
+.mz-product-actions-row
+.mz-product-cart-btn {
+
+    flex: 1 1 50% !important;
+
+    width: 50% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+
+    min-height: 48px !important;
+
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    border-radius: 7px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================
+   زر أضف إلى السلة
+   ========================================= */
+
+html body
+.mz-product-actions-row
+.mz-product-cart-btn {
+
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-weight: 700 !important;
+
+    border: 0 !important;
+
+    background-color: #601f49 !important;
+
+    background-image: linear-gradient(
+        110deg,
+        #601f49 0%,
+        #7d285e 28%,
+        #b65389 50%,
+        #7d285e 72%,
+        #601f49 100%
+    ) !important;
+
+    background-size: 300% 100% !important;
+
+    animation:
+        mz-product-cart-animation
+        4s
+        ease-in-out
+        infinite !important;
+
+    box-shadow: none !important;
+}
+
+
+/* أي span أو icon داخل زر السلة أبيض */
+html body
+.mz-product-cart-btn *,
+html body
+.mz-product-cart-btn span,
+html body
+.mz-product-cart-btn i,
+html body
+.mz-product-cart-btn svg {
+
+    color: #ffffff !important;
+    fill: #ffffff !important;
+
+    -webkit-text-fill-color:
+        #ffffff !important;
+}
+
+
+/* حركة الزر */
+@keyframes mz-product-cart-animation {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================
+   زر اشتر الآن
+   ========================================= */
+
+html body
+.mz-product-actions-row
+.mz-product-buy-btn {
+
+    background: #ffeef4 !important;
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color:
+        #6f1f49 !important;
+
+    border:
+        1px solid
+        #6f1f49 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* Hover */
+html body
+.mz-product-actions-row
+.mz-product-cart-btn:hover {
+
+    box-shadow:
+        0 5px 14px
+        rgba(96,31,73,.20) !important;
+}
+
+/* =========================================================
+   توسيط رقم الكمية داخل مربعه بالضبط
+   ========================================================= */
+
+/* الحاوية */
+html body .select-quantity-div .form-group > div {
+    position: relative !important;
+
+    width: 100px !important;
+    height: 40px !important;
+
+    margin: 0 auto !important;
+}
+
+
+/* الـ Select */
+html body #product-quantity {
+    width: 100px !important;
+    height: 40px !important;
+
+    box-sizing: border-box !important;
+
+    /* مساحة 36px على اليسار لمربع السهم */
+    padding: 0 0 0 36px !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+    text-align-last: center !important;
+
+    direction: ltr !important;
+
+    line-height: 40px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #d9d9d9 !important;
+    border-radius: 5px !important;
+
+    /* إلغاء سهم المتصفح */
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+}
+
+
+/* الخيارات */
+html body #product-quantity option {
+    text-align: center !important;
+}
+
+
+/* الخط الفاصل لمربع السهم */
+html body .select-quantity-div .form-group > div::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 36px !important;
+    top: 0 !important;
+
+    width: 1px !important;
+    height: 40px !important;
+
+    background: #d9d9d9 !important;
+
+    pointer-events: none !important;
+
+    z-index: 2 !important;
+}
+
+
+/* السهم */
+html body .select-quantity-div .form-group > div::after {
+    content: "⌄" !important;
+
+    position: absolute !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 36px !important;
+    height: 40px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #601f49 !important;
+
+    font-size: 15px !important;
+    line-height: 1 !important;
+
+    pointer-events: none !important;
+
+    z-index: 3 !important;
+}
+/* =========================================
+   محاذاة وصف المنتج لليمين
+   ========================================= */
+
+html body #product-description .description-paragraph,
+html body #product-description .description-paragraph h1,
+html body #product-description .description-paragraph h2,
+html body #product-description .description-paragraph h3,
+html body #product-description .description-paragraph h4,
+html body #product-description .description-paragraph h5,
+html body #product-description .description-paragraph p,
+html body #product-description .description-paragraph div,
+html body #product-description .description-paragraph span {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* إزالة أي توسيط مفروض داخل النص */
+html body #product-description .description-text-clear * {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* =========================================================
+   MZAJ RIFI - DESKTOP HEADER - CLEAN FINAL
+   5 أقسام + أيقونة تسجيل بجوار السلة + شعار متوازن
+   ملاحظة: موضع الحساب والشعار يحسبه JavaScript ديناميكياً
+   ========================================================= */
+
+@media (min-width: 992px) {
+
+    /* إخفاء الصف القديم الخاص بالدخول/الدولة */
+    html body .mz-hide-desktop-utility-row {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        overflow: hidden !important;
+    }
+
+    html body .mz-hide-original-login,
+    html body .mz-hide-country-btn {
+        display: none !important;
+    }
+
+    /* الهيدر الرئيسي */
+    html body .search-header .search-header-bar.mz-desktop-header-bar,
+    html body .search-header .search-header-bar,
+    html body .search-header-bar {
+        position: relative !important;
+        min-height: 82px !important;
+        height: 82px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    html body .search-header {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    html body .search-header .container,
+    html body .search-header .container-fluid {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* الشعار - الحجم فقط، أما الموضع فيحدده JavaScript */
+    html body .search-header .header-logo {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    html body .search-header .header-logo > a {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    html body .search-header .header-logo img.image-logo.d-none.d-lg-block {
+        display: block !important;
+        width: auto !important;
+        height: 56px !important;
+        max-height: 56px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        object-fit: contain !important;
+    }
+
+    html body .search-header .header-logo img.image-logo.d-block.d-lg-none {
+        display: none !important;
+    }
+
+    /* أيقونة الحساب - لا نضع left/right كي لا نتعارض مع JavaScript */
+    html body .mz-account-icon-btn {
+        width: 42px !important;
+        height: 42px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        outline: none !important;
+        cursor: pointer !important;
+        z-index: 100 !important;
+        overflow: visible !important;
+        transition: transform .25s ease, background-color .25s ease !important;
+    }
+
+    html body .mz-account-icon-btn svg {
+        width: 35px !important;
+        height: 35px !important;
+        display: block !important;
+        fill: none !important;
+        stroke: #6f1f49 !important;
+        stroke-width: 1.7 !important;
+        stroke-linecap: round !important;
+        stroke-linejoin: round !important;
+        pointer-events: none !important;
+    }
+
+    html body .mz-account-icon-btn:hover {
+        background: rgba(111,31,73,.05) !important;
+        border-radius: 50% !important;
+    }
+
+    /* الأقسام الخمسة في المنتصف */
+    html body .mz-desktop-categories-inline {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+
+        width: calc(100% - 430px) !important;
+        max-width: 980px !important;
+
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: clamp(16px, 2vw, 32px) !important;
+
+        margin: 0 !important;
+        padding: 0 8px !important;
+
+        direction: rtl !important;
+        background: transparent !important;
+        box-sizing: border-box !important;
+        z-index: 20 !important;
+    }
+
+    html body .mz-desktop-category-link {
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+
+        margin: 0 !important;
+        padding: 4px 0 !important;
+
+        white-space: nowrap !important;
+        background: transparent !important;
+
+        color: #6f1f49 !important;
+        -webkit-text-fill-color: #6f1f49 !important;
+
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+        text-decoration: none !important;
+
+        transition: color .25s ease, transform .25s ease !important;
+    }
+
+    html body .mz-desktop-category-link:hover {
+        color: #b54282 !important;
+        -webkit-text-fill-color: #b54282 !important;
+        transform: translateY(-1px) !important;
+    }
+
+    html body .mz-desktop-category-link::after {
+        content: "" !important;
+        position: absolute !important;
+        bottom: -2px !important;
+        left: 50% !important;
+        width: 0 !important;
+        height: 2px !important;
+        transform: translateX(-50%) !important;
+        background: #6f1f49 !important;
+        border-radius: 30px !important;
+        transition: width .25s ease !important;
+    }
+
+    html body .mz-desktop-category-link:hover::after {
+        width: 60% !important;
+    }
+
+    /* حذف شريط الأقسام الأصلي ومساحته */
+    html body .mz-desktop-categories-source {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* إزالة أي فراغ قبل أول محتوى */
+    html body .main-content,
+    html body .app-content,
+    html body .home {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+
+/* لابتوبات أصغر */
