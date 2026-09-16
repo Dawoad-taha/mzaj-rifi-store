@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'tmp-mzaj-upload/exact/chunk-016.part'
+      - 'tmp-mzaj-upload/exact/assemble.trigger'
   workflow_dispatch:
 
 permissions:
