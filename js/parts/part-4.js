@@ -1,69 +1,114 @@
 /* =========================================================
-   MZAJ RIFI - FIRST VISIT HOMEPAGE LOADER
-   يظهر مرة واحدة فقط في الجلسة وعلى الصفحة الرئيسية فقط
+   MZAJ RIFI - GLOBAL LOADING SCREEN
+   يظهر في كل صفحات المتجر عند كل تحميل صفحة
    ========================================================= */
 ;(function () {
-    const LOADER_KEY = 'mzaj_home_loader_seen';
-    const LOADER_ID = 'mz-first-home-loader';
-    const ACTIVE_CLASS = 'mz-loader-active';
-    const HIDE_CLASS = 'mz-loader-hide';
 
-    function isHomePage() {
-        const path = (window.location.pathname || '/').replace(/\/+$/, '');
-        return path === '' || path === '/';
-    }
+    if (window.__MZAJ_RIFI_GLOBAL_LOADER__) return;
+    window.__MZAJ_RIFI_GLOBAL_LOADER__ = true;
 
-    function wasShownThisSession() {
-        try { return window.sessionStorage.getItem(LOADER_KEY) === '1'; }
-        catch (error) { return false; }
-    }
+    function createMzLoader() {
 
-    function markAsShown() {
-        try { window.sessionStorage.setItem(LOADER_KEY, '1'); }
-        catch (error) {}
-    }
+        const oldGlobalLoader = document.getElementById('mz-store-loader');
+        if (oldGlobalLoader) oldGlobalLoader.remove();
 
-    function createLoader() {
-        if (document.getElementById(LOADER_ID)) return document.getElementById(LOADER_ID);
+        const oldHomeLoader = document.getElementById('mz-first-home-loader');
+        if (oldHomeLoader) oldHomeLoader.remove();
+
+        document.documentElement.classList.remove('mz-loader-active');
+
         const loader = document.createElement('div');
-        loader.id = LOADER_ID;
-        loader.innerHTML = '<div class="mz-loader-content" aria-hidden="true"><div class="mz-loader-butterfly">🦋</div><div class="mz-loader-spinner"></div></div>';
-        document.documentElement.classList.add(ACTIVE_CLASS);
-        document.body.appendChild(loader);
-        return loader;
-    }
+        loader.id = 'mz-store-loader';
+        loader.setAttribute('role', 'status');
+        loader.setAttribute('aria-label', 'جاري تحميل المتجر');
 
-    function startHomeLoader() {
-        if (!isHomePage() || wasShownThisSession()) return;
-        markAsShown();
-        const loader = createLoader();
-        if (!loader) return;
+        const storeLogo =
+            document.querySelector('.header-logo img.image-logo.d-block.d-lg-none') ||
+            document.querySelector('.header-logo img.image-logo.d-none.d-lg-block') ||
+            document.querySelector('.header-logo img') ||
+            document.querySelector('img.image-logo');
+
+        const logo = document.createElement('img');
+        logo.className = 'mz-loader-logo';
+        logo.alt = 'مزاج ريفي';
+
+        if (storeLogo) {
+            logo.src = storeLogo.currentSrc || storeLogo.src;
+        }
+
+        const textBox = document.createElement('div');
+        textBox.className = 'mz-loader-text';
+
+        const brandName = document.createElement('div');
+        brandName.className = 'mz-loader-brand';
+        brandName.textContent = 'مزاج ريفي';
+
+        const tagline = document.createElement('div');
+        tagline.className = 'mz-loader-tagline';
+        tagline.textContent = 'الطريق الأنيق لإرسال مشاعرك';
+
+        const loadingLine = document.createElement('div');
+        loadingLine.className = 'mz-loader-line';
+
+        textBox.appendChild(brandName);
+        textBox.appendChild(tagline);
+
+        if (logo.src) loader.appendChild(logo);
+        loader.appendChild(textBox);
+        loader.appendChild(loadingLine);
+
+        document.body.appendChild(loader);
 
         const startedAt = Date.now();
-        const minimumVisibleTime = 750;
-        let hideStarted = false;
+        const minimumVisibleTime = 850;
+        let loaderClosed = false;
 
         function hideLoader() {
-            if (hideStarted) return;
-            hideStarted = true;
+            if (loaderClosed) return;
+            loaderClosed = true;
+
             const elapsed = Date.now() - startedAt;
             const remaining = Math.max(0, minimumVisibleTime - elapsed);
+
             window.setTimeout(function () {
-                loader.classList.add(HIDE_CLASS);
-                document.documentElement.classList.remove(ACTIVE_CLASS);
+                loader.classList.add('mz-loader-hide');
+
                 window.setTimeout(function () {
-                    if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
-                }, 450);
+                    if (loader.parentNode) loader.remove();
+                }, 700);
             }, remaining);
         }
 
-        if (document.readyState === 'complete') hideLoader();
-        else window.addEventListener('load', hideLoader, { once: true });
-        window.setTimeout(hideLoader, 3500);
+        if (document.readyState === 'complete') {
+            window.setTimeout(hideLoader, 250);
+        } else {
+            window.addEventListener(
+                'load',
+                function () {
+                    window.setTimeout(hideLoader, 250);
+                },
+                { once: true }
+            );
+        }
+
+        /* حماية حتى لا يبقى اللودينج عالقاً مهما حصل */
+        window.setTimeout(hideLoader, 4500);
     }
 
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startHomeLoader, { once: true });
-    else startHomeLoader();
+    function startGlobalLoader() {
+        if (!document.body) {
+            window.setTimeout(startGlobalLoader, 20);
+            return;
+        }
+        createMzLoader();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startGlobalLoader, { once: true });
+    } else {
+        startGlobalLoader();
+    }
+
 })();
 
 /* =========================================================
