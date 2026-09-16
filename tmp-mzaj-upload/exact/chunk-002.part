@@ -1,0 +1,184 @@
+            });
+
+            menu.querySelectorAll('li').forEach(function (li) {
+                const text = li.textContent.trim();
+                const link = li.querySelector('a');
+
+                if (!text && !link) {
+                    li.style.setProperty('display', 'none', 'important');
+                }
+            });
+
+            let title = menu.querySelector('.mz-menu-main-title');
+
+            if (!title) {
+                title = document.createElement('div');
+                title.className = 'mz-menu-main-title';
+
+                const firstList = menu.querySelector('ul');
+
+                if (firstList && firstList.parentNode) {
+                    firstList.parentNode.insertBefore(title, firstList);
+                } else {
+                    menu.prepend(title);
+                }
+            }
+
+            let titleText = title.querySelector('.mz-menu-title-text');
+
+            if (!titleText) {
+
+                Array.from(title.childNodes).forEach(function (node) {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        node.remove();
+                    }
+                });
+
+                titleText = document.createElement('span');
+                titleText.className = 'mz-menu-title-text';
+                titleText.textContent = 'القائمة الرئيسية';
+
+                title.prepend(titleText);
+            }
+
+            title.style.setProperty('position', 'relative', 'important');
+            title.style.setProperty('display', 'flex', 'important');
+            title.style.setProperty('align-items', 'center', 'important');
+            title.style.setProperty('justify-content', 'flex-start', 'important');
+            title.style.setProperty('direction', 'rtl', 'important');
+            title.style.setProperty('width', '100%', 'important');
+            title.style.setProperty('min-height', '56px', 'important');
+            title.style.setProperty('margin', '0', 'important');
+            title.style.setProperty('padding', '0 15px 0 58px', 'important');
+            title.style.setProperty('box-sizing', 'border-box', 'important');
+            title.style.setProperty('text-align', 'right', 'important');
+            title.style.setProperty('background', '#6f1f49', 'important');
+            title.style.setProperty('background-color', '#6f1f49', 'important');
+
+            titleText.style.setProperty('display', 'block', 'important');
+            titleText.style.setProperty('flex', '1 1 auto', 'important');
+            titleText.style.setProperty('width', 'auto', 'important');
+            titleText.style.setProperty('margin', '0', 'important');
+            titleText.style.setProperty('padding', '0', 'important');
+            titleText.style.setProperty('text-align', 'right', 'important');
+            titleText.style.setProperty('direction', 'rtl', 'important');
+            titleText.style.setProperty('color', '#ffffff', 'important');
+            titleText.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
+
+            let closeBtn = title.querySelector('.mz-menu-close-btn');
+
+            if (!closeBtn) {
+                closeBtn = document.createElement('button');
+                closeBtn.type = 'button';
+                closeBtn.className = 'mz-menu-close-btn';
+                closeBtn.setAttribute('aria-label', 'إغلاق القائمة');
+                closeBtn.innerHTML = '&times;';
+                closeBtn.addEventListener('click', closeMzSideMenu);
+
+                title.appendChild(closeBtn);
+            }
+
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.style.setProperty('color', '#6f1f49', 'important');
+                link.style.setProperty('-webkit-text-fill-color', '#6f1f49', 'important');
+                link.style.setProperty('text-align', 'right', 'important');
+                link.style.setProperty('direction', 'rtl', 'important');
+            });
+
+        });
+
+    }
+
+    function scheduleMzSideMenuFix() {
+        if (menuFixScheduled) return;
+
+        menuFixScheduled = true;
+
+        requestAnimationFrame(function () {
+            menuFixScheduled = false;
+            fixMzSideMenu();
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            scheduleMzSideMenuFix,
+            { once: true }
+        );
+    } else {
+        scheduleMzSideMenuFix();
+    }
+
+    document.addEventListener('click', function () {
+        setTimeout(scheduleMzSideMenuFix, 50);
+        setTimeout(scheduleMzSideMenuFix, 200);
+    });
+
+    const observer = new MutationObserver(function () {
+        scheduleMzSideMenuFix();
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+})();
+
+/* =========================================================
+   MZAJ RIFI - CATEGORY SLIDER FINAL ROBUST
+   4 DESKTOP / 3 TABLET / 2 MOBILE
+   HOME PAGE ONLY
+   الروابط طبيعية على اللابتوب - السحب فقط على الشاشات الصغيرة
+   ========================================================= */
+
+;(function () {
+
+    const ITEMS = [
+        {
+            image: 'https://res.cloudinary.com/ikuuccsf/image/upload/v1789485774/Artboard_1.jpg',
+            link: 'https://mzajrifi.com/categories/397390/%D8%AA%D8%B3%D9%84%D9%8A%D9%85-%D9%81%D9%88%D8%B1%D9%8A-%D9%8A%D8%A3%D8%AA%D9%8A-%D9%83%D9%85%D8%A7-%D8%A7%D9%84%D8%B5%D9%88%D8%B1%D8%A9'
+        },
+        {
+            image: 'https://res.cloudinary.com/ikuuccsf/image/upload/v1789485859/Artboard_2.jpg',
+            link: 'https://mzajrifi.com/categories/395074/bouquetsflowers'
+        },
+        {
+            image: 'https://res.cloudinary.com/ikuuccsf/image/upload/v1789485921/Artboard_3.jpg',
+            link: 'https://mzajrifi.com/categories/395076/%D8%AA%D9%82%D8%AF%D9%8A%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D9%87%D8%AF%D8%A7%D9%8A%D8%A7-%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9'
+        },
+        {
+            image: 'https://res.cloudinary.com/ikuuccsf/image/upload/v1789485994/Artboard_4.jpg',
+            link: 'https://mzajrifi.com/categories/391216/%D8%A7%D9%84%D9%88%D8%B1%D8%AF-%D9%88-%D8%A7%D9%84%D8%B4%D9%88%D9%83%D9%88%D9%84%D8%A7%D8%AA%D9%87'
+        },
+        {
+            image: 'https://res.cloudinary.com/ikuuccsf/image/upload/v1789486060/Artboard_5.jpg',
+            link: 'https://mzajrifi.com/categories/885942/graduation'
+        },
+        {
+            image: 'https://res.cloudinary.com/ikuuccsf/image/upload/v1789486123/Artboard_6.jpg',
+            link: 'https://mzajrifi.com/categories'
+        }
+    ];
+
+    const GAP = 16;
+
+    function isMzHomePage() {
+        const path = (window.location.pathname || '/')
+            .replace(/\/+$/, '') || '/';
+
+        return (
+            path === '/' ||
+            path === '/ar' ||
+            path === '/ar-sa'
+        );
+    }
+
+    function removeMzCategorySlider() {
+        document
+            .querySelectorAll('#mz-category-slider, #mz-category-slider-final')
+            .forEach(function (el) {
+                el.remove();
+            });
+    }
