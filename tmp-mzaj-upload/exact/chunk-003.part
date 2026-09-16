@@ -1,0 +1,184 @@
+
+    function buildSlider() {
+
+        if (!isMzHomePage()) {
+            removeMzCategorySlider();
+            return;
+        }
+
+        removeMzCategorySlider();
+
+        const section = document.createElement('section');
+        section.id = 'mz-category-slider-final';
+        section.style.setProperty('position', 'relative', 'important');
+        section.style.setProperty('z-index', '50', 'important');
+        section.style.setProperty('pointer-events', 'auto', 'important');
+
+        const title = document.createElement('h2');
+        title.className = 'mzfinal-title';
+        title.textContent = 'اختر ما يناسبك';
+
+        const viewport = document.createElement('div');
+        viewport.className = 'mzfinal-viewport';
+        viewport.style.setProperty('pointer-events', 'auto', 'important');
+
+        const track = document.createElement('div');
+        track.className = 'mzfinal-track';
+        track.style.setProperty('pointer-events', 'auto', 'important');
+
+        const CLONES_COUNT = 4;
+        const sliderItems = [
+            ...ITEMS,
+            ...ITEMS.slice(0, CLONES_COUNT)
+        ];
+
+        sliderItems.forEach(function (item, i) {
+
+            const card = document.createElement(item.link ? 'a' : 'div');
+            card.className = 'mzfinal-card';
+
+            if (item.link) {
+                card.href = item.link;
+                card.setAttribute('aria-label', 'فتح التصنيف');
+                card.style.setProperty('pointer-events', 'auto', 'important');
+                card.style.setProperty('cursor', 'pointer', 'important');
+                card.style.setProperty('position', 'relative', 'important');
+                card.style.setProperty('z-index', '3', 'important');
+            } else {
+                card.classList.add('mzfinal-card-disabled');
+            }
+
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = 'اختر ما يناسبك';
+            img.loading = i < 4 ? 'eager' : 'lazy';
+            img.decoding = 'async';
+            img.draggable = false;
+
+            img.style.setProperty('display', 'block', 'important');
+            img.style.setProperty('width', '100%', 'important');
+            img.style.setProperty('height', 'auto', 'important');
+            img.style.setProperty('object-fit', 'cover', 'important');
+            img.style.setProperty('pointer-events', 'none', 'important');
+
+            card.appendChild(img);
+            track.appendChild(card);
+        });
+
+        viewport.appendChild(track);
+
+        const pagination = document.createElement('div');
+        pagination.className = 'mzfinal-pagination';
+
+        ITEMS.forEach(function (_, i) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'mzfinal-dot';
+            dot.dataset.index = i;
+            pagination.appendChild(dot);
+        });
+
+        section.appendChild(title);
+        section.appendChild(viewport);
+        section.appendChild(pagination);
+
+        const home = document.querySelector('.home');
+        if (!home) return;
+
+        const firstProducts = home.querySelector('.home-products-section');
+
+        if (firstProducts && firstProducts.parentNode) {
+            firstProducts.parentNode.insertBefore(section, firstProducts);
+        } else {
+            home.prepend(section);
+        }
+
+        let index = 0;
+        let timer = null;
+        let dragging = false;
+        let moved = false;
+        let startX = 0;
+        let currentX = 0;
+        let startTranslate = 0;
+
+        function getVisibleCount() {
+            const width = window.innerWidth || viewport.clientWidth || 0;
+            if (width >= 1200) return 4;
+            if (width >= 768) return 3;
+            return 2;
+        }
+
+        function resizeCards() {
+            const viewportStyle = getComputedStyle(viewport);
+            const padLeft = parseFloat(viewportStyle.paddingLeft) || 0;
+            const padRight = parseFloat(viewportStyle.paddingRight) || 0;
+            const usableWidth = viewport.clientWidth - padLeft - padRight;
+            if (usableWidth < 200) return;
+
+            const visibleCount = getVisibleCount();
+            const totalGap = GAP * (visibleCount - 1);
+            const cardWidth = (usableWidth - totalGap) / visibleCount;
+
+            track.querySelectorAll('.mzfinal-card').forEach(function (card) {
+                card.style.setProperty('flex', '0 0 ' + cardWidth + 'px', 'important');
+                card.style.setProperty('width', cardWidth + 'px', 'important');
+                card.style.setProperty('min-width', cardWidth + 'px', 'important');
+                card.style.setProperty('max-width', cardWidth + 'px', 'important');
+            });
+
+            goToCurrent(false);
+        }
+
+        function getStep() {
+            const card = track.querySelector('.mzfinal-card');
+            if (!card) return 0;
+            return card.getBoundingClientRect().width + GAP;
+        }
+
+        function translateFor(i) {
+            return -(i * getStep());
+        }
+
+        function goToCurrent(animated) {
+            track.style.transition = animated
+                ? 'transform .55s cubic-bezier(.22,.65,.3,1)'
+                : 'none';
+            track.style.transform =
+                'translate3d(' + translateFor(index) + 'px,0,0)';
+        }
+
+        function updateDots() {
+            const real = index % ITEMS.length;
+            pagination.querySelectorAll('.mzfinal-dot').forEach(function (dot, i) {
+                dot.classList.toggle('active', i === real);
+            });
+        }
+
+        function nextSlide() {
+            index++;
+            goToCurrent(true);
+            updateDots();
+        }
+
+        function previousSlide() {
+            if (index === 0) {
+                index = ITEMS.length;
+                goToCurrent(false);
+                requestAnimationFrame(function () {
+                    index = ITEMS.length - 1;
+                    goToCurrent(true);
+                    updateDots();
+                });
+                return;
+            }
+            index--;
+            goToCurrent(true);
+            updateDots();
+        }
+
+        track.addEventListener('transitionend', function () {
+            if (index >= ITEMS.length) {
+                index = 0;
+                goToCurrent(false);
+                updateDots();
+            }
