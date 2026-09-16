@@ -1,0 +1,643 @@
+.mz-footer-section-separator::after {
+    content: "✦" !important;
+
+    position: relative !important;
+
+    width: 22px !important;
+    height: 22px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        rgba(255,255,255,.94)
+        !important;
+
+    color:
+        #8d3560 !important;
+
+    -webkit-text-fill-color:
+        #8d3560 !important;
+
+    border:
+        1px solid
+        rgba(111,31,73,.18)
+        !important;
+
+    font-size:
+        10px !important;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(255,255,255,.53),
+        0 3px 10px
+        rgba(111,31,73,.09)
+        !important;
+
+    z-index: 2 !important;
+
+    animation:
+        mzFooterSeparatorIcon
+        3.2s ease-in-out
+        infinite
+        !important;
+}
+
+
+/* =========================================================
+   Vertical Desktop Separator
+   ========================================================= */
+
+.mz-footer-desktop-vseparator {
+    position: absolute !important;
+
+    top: 12% !important;
+
+    width: 24px !important;
+    height: 76% !important;
+
+    transform:
+        translateX(-50%) !important;
+
+    pointer-events: none !important;
+
+    z-index: 8 !important;
+}
+
+
+.mz-footer-desktop-vseparator::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 50% !important;
+    top: 0 !important;
+
+    width: 2px !important;
+    height: 100% !important;
+
+    transform:
+        translateX(-50%)
+        scaleY(.85);
+
+    background:
+        linear-gradient(
+            to bottom,
+
+            transparent,
+
+            rgba(111,31,73,.16),
+
+            rgba(189,77,135,.48),
+
+            rgba(236,174,204,1),
+
+            rgba(189,77,135,.48),
+
+            rgba(111,31,73,.16),
+
+            transparent
+        )
+        !important;
+
+    border-radius:
+        100px !important;
+
+    animation:
+        mzFooterVerticalLine
+        3.2s ease-in-out
+        infinite
+        !important;
+}
+
+
+.mz-footer-desktop-vseparator::after {
+    content: "✦" !important;
+
+    position: absolute !important;
+
+    left: 50% !important;
+    top: 50% !important;
+
+    width: 22px !important;
+    height: 22px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        rgba(255,255,255,.94)
+        !important;
+
+    color:
+        #8d3560 !important;
+
+    -webkit-text-fill-color:
+        #8d3560 !important;
+
+    border:
+        1px solid
+        rgba(111,31,73,.18)
+        !important;
+
+    font-size:
+        10px !important;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(255,255,255,.53)
+        !important;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.92);
+
+    animation:
+        mzFooterVerticalIcon
+        3.2s ease-in-out
+        infinite
+        !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* الصورة أوضح من السابق */
+    html body .footer-store-section::before,
+    html body footer section.footer-theme-bg::before {
+        opacity:
+            .45 !important;
+
+        background-position:
+            center center !important;
+
+        background-size:
+            cover !important;
+    }
+
+
+    html body .footer-store-section::after,
+    html body footer section.footer-theme-bg::after {
+        background:
+            rgba(255,255,255,.46)
+            !important;
+    }
+
+
+    .mz-footer-section-separator {
+        width:
+            76% !important;
+
+        margin:
+            17px auto 20px !important;
+    }
+
+
+    /*
+       في الموبايل لا نحتاج
+       الفواصل العمودية
+    */
+    .mz-footer-desktop-vseparator {
+        display:
+            none !important;
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 769px) {
+
+    html body .footer-store-section,
+    html body footer section.footer-theme-bg {
+        padding-top:
+            34px !important;
+
+        padding-bottom:
+            34px !important;
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes mzFooterSeparatorLine {
+
+    0%,
+    100% {
+        opacity: .50;
+
+        transform:
+            translateY(-50%)
+            scaleX(.78);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            translateY(-50%)
+            scaleX(1);
+    }
+
+}
+
+
+@keyframes mzFooterSeparatorIcon {
+
+    0%,
+    100% {
+        transform:
+            scale(.90)
+            rotate(0deg);
+
+        opacity:
+            .78;
+    }
+
+    50% {
+        transform:
+            scale(1.12)
+            rotate(45deg);
+
+        opacity:
+            1;
+    }
+
+}
+
+
+@keyframes mzFooterVerticalLine {
+
+    0%,
+    100% {
+        opacity:
+            .50;
+
+        transform:
+            translateX(-50%)
+            scaleY(.78);
+    }
+
+    50% {
+        opacity:
+            1;
+
+        transform:
+            translateX(-50%)
+            scaleY(1);
+    }
+
+}
+
+
+@keyframes mzFooterVerticalIcon {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(.90)
+            rotate(0deg);
+
+        opacity:
+            .78;
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12)
+            rotate(45deg);
+
+        opacity:
+            1;
+    }
+
+}
+/* =========================================================
+   FOOTER ROUNDED
+   ========================================================= */
+
+html body .footer-store-section,
+html body footer .footer-store-section,
+html body footer section.footer-theme-bg {
+    border-radius: 24px !important;
+    overflow: hidden !important;
+
+    /* مساحة بسيطة حتى يظهر الراوندد */
+    width: calc(100% - 32px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* الموبايل */
+@media (max-width: 768px) {
+
+    html body .footer-store-section,
+    html body footer .footer-store-section,
+    html body footer section.footer-theme-bg {
+        width: calc(100% - 20px) !important;
+        border-radius: 18px !important;
+    }
+
+}
+/* =========================================================
+   MZAJ RIFI - FOOTER TYPOGRAPHY FINAL
+   يعتمد على الكلاسات التي أضافها JavaScript بالفعل
+   ========================================================= */
+
+
+/* =========================================
+   عناوين الفوتر
+   من نحن - روابط مهمة - موقعنا - تواصل معنا
+   ========================================= */
+
+html body
+.footer-store-section
+.mz-footer-typo-title,
+
+html body
+footer
+.mz-footer-typo-title {
+
+    font-size: 25px !important;
+    line-height: 1.45 !important;
+
+    font-weight: 700 !important;
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+
+    margin-bottom: 16px !important;
+}
+
+
+/* =========================================
+   النصوص العادية داخل الفوتر
+   ========================================= */
+
+html body
+.footer-store-section
+.mz-footer-typo-text,
+
+html body
+footer
+.mz-footer-typo-text {
+
+    font-size: 17px !important;
+    line-height: 1.9 !important;
+
+    font-weight: 400 !important;
+}
+
+
+/* =========================================
+   روابط "روابط مهمة"
+   ========================================= */
+
+html body
+.footer-store-section
+a.mz-footer-typo-text,
+
+html body
+footer
+a.mz-footer-typo-text {
+
+    font-size: 17px !important;
+    line-height: 2 !important;
+
+    font-weight: 400 !important;
+
+    color: #685965 !important;
+    -webkit-text-fill-color: #685965 !important;
+
+    transition:
+        color .25s ease,
+        transform .25s ease
+        !important;
+}
+
+
+html body
+.footer-store-section
+a.mz-footer-typo-text:hover,
+
+html body
+footer
+a.mz-footer-typo-text:hover {
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* العناوين */
+    html body
+    .footer-store-section
+    .mz-footer-typo-title,
+
+    html body
+    footer
+    .mz-footer-typo-title {
+
+        font-size: 22px !important;
+        line-height: 1.45 !important;
+
+        font-weight: 700 !important;
+    }
+
+
+    /* النصوص */
+    html body
+    .footer-store-section
+    .mz-footer-typo-text,
+
+    html body
+    footer
+    .mz-footer-typo-text {
+
+        font-size: 16.5px !important;
+        line-height: 1.9 !important;
+    }
+
+
+    /* الروابط */
+    html body
+    .footer-store-section
+    a.mz-footer-typo-text,
+
+    html body
+    footer
+    a.mz-footer-typo-text {
+
+        font-size: 16.5px !important;
+        line-height: 2 !important;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (min-width: 769px) {
+
+    html body
+    .footer-store-section
+    .mz-footer-typo-title,
+
+    html body
+    footer
+    .mz-footer-typo-title {
+
+        font-size: 25px !important;
+    }
+
+
+    html body
+    .footer-store-section
+    .mz-footer-typo-text,
+
+    html body
+    footer
+    .mz-footer-typo-text {
+
+        font-size: 17px !important;
+    }
+
+
+    html body
+    .footer-store-section
+    a.mz-footer-typo-text,
+
+    html body
+    footer
+    a.mz-footer-typo-text {
+
+        font-size: 17px !important;
+    }
+
+}
+/* =========================================================
+   تقليل المسافة بين فاصل الفوتر وعنوان القسم - Mobile
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* تصغير مساحة الفاصل نفسه */
+    html body .mz-footer-section-separator {
+        height: 16px !important;
+
+        margin-top: 8px !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* العنوان الذي يأتي مباشرة بعد الفاصل */
+    html body
+    .mz-footer-section-separator
+    + .mz-footer-typo-title {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+}
+/* =========================================================
+   تقليل المسافة حول رابط "موقعنا" فقط
+   ========================================================= */
+
+/* النص/رابط الموقع */
+html body footer
+a.mz-footer-typo-text[href*="maps"],
+html body .footer-store-section
+a.mz-footer-typo-text[href*="maps"] {
+
+    line-height: 1.45 !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+/* العنصر الأب الذي يحتوي رابط الموقع */
+html body footer
+p:has(a.mz-footer-typo-text[href*="maps"]),
+html body .footer-store-section
+p:has(a.mz-footer-typo-text[href*="maps"]) {
+
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    line-height: 1.45 !important;
+}
+
+
+/* الموبايل */
+@media (max-width: 768px) {
+
+    html body footer
+    a.mz-footer-typo-text[href*="maps"],
+    html body .footer-store-section
+    a.mz-footer-typo-text[href*="maps"] {
+
+        line-height: 1.4 !important;
+    }
+
+
+    html body footer
+    p:has(a.mz-footer-typo-text[href*="maps"]),
+    html body .footer-store-section
+    p:has(a.mz-footer-typo-text[href*="maps"]) {
+
+        margin-top: 3px !important;
+        margin-bottom: 3px !important;
+    }
+
+}
+/* وصف المنتج المختصر - محاذاة لليمين */
+html body .col-product-info-single-image > section > h3 {
+    text-align: right !important;
+    direction: rtl !important;
+    width: 100% !important;
+
+    margin: 6px 0 !important;
+    padding: 0 !important;
+}
