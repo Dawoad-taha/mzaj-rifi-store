@@ -1,0 +1,184 @@
+        );
+
+        setTimeout(
+            applyCartTotal,
+            1500
+        );
+
+    }
+
+
+    if (
+        document.readyState === 'loading'
+    ) {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            run
+        );
+
+    } else {
+
+        run();
+
+    }
+
+
+    /*
+     تحديث السعر إذا تغيرت السلة
+    */
+    const observer =
+        new MutationObserver(function () {
+
+            if (!desktopMQ.matches) {
+                return;
+            }
+
+
+            setTimeout(
+                applyCartTotal,
+                80
+            );
+
+        });
+
+
+    observer.observe(
+        document.body,
+        {
+            childList: true,
+            subtree: true,
+            characterData: true
+        }
+    );
+
+})();
+/* =========================================================
+   MZAJ RIFI - FOOTER SMART SEPARATORS
+   Desktop + Mobile
+   ========================================================= */
+
+(function () {
+
+    let resizeTimer = null;
+
+
+    function cleanText(text) {
+
+        return (text || '')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+    }
+
+
+    function getFooter() {
+
+        return (
+            document.querySelector(
+                '.footer-store-section'
+            ) ||
+
+            document.querySelector(
+                'footer section.footer-theme-bg'
+            )
+        );
+
+    }
+
+
+    function getMainRow(footer) {
+
+        if (!footer) return null;
+
+
+        return (
+            footer.querySelector(
+                '.container > .row'
+            ) ||
+
+            footer.querySelector(
+                '.row'
+            )
+        );
+
+    }
+
+
+    function removeSeparators(footer) {
+
+        if (!footer) return;
+
+
+        footer.querySelectorAll(
+            '.mz-footer-section-separator,' +
+            '.mz-footer-desktop-vseparator'
+        ).forEach(function (element) {
+
+            element.remove();
+
+        });
+
+    }
+
+
+    /* =========================================
+       إيجاد العناوين الأساسية
+       ========================================= */
+
+    function getSectionHeadings(footer) {
+
+        const allowed = [
+            'من نحن',
+            'من نحن ؟',
+            'من نحن؟',
+
+            'روابط مهمة',
+
+            'موقعنا',
+
+            'تواصل معنا'
+        ];
+
+
+        return Array.from(
+            footer.querySelectorAll(
+                'h2, h3, h4, .footer-title'
+            )
+        ).filter(function (heading) {
+
+            const text =
+                cleanText(
+                    heading.textContent
+                );
+
+
+            return allowed.some(
+                function (title) {
+
+                    return (
+                        text === title ||
+                        text.includes(title)
+                    );
+
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       فاصل قبل كل قسم بعد الأول
+       ========================================= */
+
+    function buildMobileSeparators(
+        footer
+    ) {
+
+        const headings =
+            getSectionHeadings(
+                footer
+            );
