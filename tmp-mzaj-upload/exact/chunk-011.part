@@ -1,0 +1,184 @@
+
+        return document.querySelector(
+            '.search-header .search-header-bar'
+        );
+
+    }
+
+
+    function getAccountButton(header) {
+
+        return header
+            ? header.querySelector(
+                '.mz-account-icon-btn'
+            )
+            : null;
+
+    }
+
+
+    function findCartPrice(header) {
+
+        if (!header) return null;
+
+
+        const elements = Array.from(
+            header.querySelectorAll(
+                'span, strong, small, div, p'
+            )
+        );
+
+
+        const candidates =
+            elements.filter(function (el) {
+
+                const text =
+                    cleanText(el.textContent);
+
+
+                if (!text) return false;
+
+
+                /*
+                 نبحث عن سعر داخل الهيدر
+                 يحتوي أرقام + رمز الريال أو SAR
+                */
+                const hasNumber =
+                    /\d/.test(text);
+
+
+                const hasCurrency =
+                    text.includes('ریال') ||
+                    text.includes('ر.س') ||
+                    /SAR/i.test(text);
+
+
+                if (
+                    !hasNumber ||
+                    !hasCurrency
+                ) {
+                    return false;
+                }
+
+
+                /*
+                 نتجنب العناصر الكبيرة التي تحتوي
+                 السعر بداخل عنصر أصغر
+                */
+                const childHasSamePrice =
+                    Array.from(
+                        el.children
+                    ).some(function (child) {
+
+                        const childText =
+                            cleanText(
+                                child.textContent
+                            );
+
+                        return (
+                            /\d/.test(childText) &&
+                            (
+                                childText.includes('ریال') ||
+                                childText.includes('ر.س') ||
+                                /SAR/i.test(childText)
+                            )
+                        );
+
+                    });
+
+
+                return !childHasSamePrice;
+
+            });
+
+
+        /*
+         عادة أقصر نص هو السعر نفسه
+        */
+        candidates.sort(function (a, b) {
+
+            return (
+                cleanText(a.textContent).length -
+                cleanText(b.textContent).length
+            );
+
+        });
+
+
+        return candidates[0] || null;
+
+    }
+
+
+    function applyCartTotal() {
+
+        if (!desktopMQ.matches) {
+            return;
+        }
+
+
+        const header =
+            getHeader();
+
+
+        const account =
+            getAccountButton(header);
+
+
+        const priceElement =
+            findCartPrice(header);
+
+
+        if (
+            !header ||
+            !account ||
+            !priceElement
+        ) {
+            return;
+        }
+
+
+        const priceText =
+            cleanText(
+                priceElement.textContent
+            );
+
+
+        /*
+         نخزن السعر على زر الحساب
+         ليظهر من CSS
+        */
+        account.setAttribute(
+            'data-cart-total',
+            priceText
+        );
+
+
+        /*
+         نخفي السعر القديم فقط
+         بدون حذف العنصر
+        */
+        priceElement.classList.add(
+            'mz-original-cart-total-hidden'
+        );
+
+
+        account.classList.add(
+            'mz-account-has-cart-total'
+        );
+
+    }
+
+
+    function run() {
+
+        applyCartTotal();
+
+        setTimeout(
+            applyCartTotal,
+            300
+        );
+
+        setTimeout(
+            applyCartTotal,
+            800
