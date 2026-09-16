@@ -1,0 +1,300 @@
+/* =========================================================
+   MZAJ RIFI - MOBILE LOGO ONLY
+   ========================================================= */
+
+(function () {
+
+    function handleMobileLogo() {
+
+        const headerBar = document.querySelector(
+            '.search-header .search-header-bar'
+        );
+
+        const logoLink = document.querySelector(
+            '.search-header .header-logo > a'
+        );
+
+        if (!headerBar || !logoLink) return;
+
+        if (window.innerWidth < 992) {
+            headerBar.classList.add('mz-header-bar');
+            logoLink.classList.add('mz-centered-logo');
+        } else {
+            logoLink.classList.remove('mz-centered-logo');
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            handleMobileLogo,
+            { once: true }
+        );
+    } else {
+        handleMobileLogo();
+    }
+
+    window.addEventListener('resize', handleMobileLogo);
+
+})();
+
+/* =========================================================
+   MZAJ RIFI - LOADING SCREEN
+   ========================================================= */
+
+;(function () {
+
+    function createMzLoader() {
+
+        const oldLoader = document.getElementById('mz-store-loader');
+
+        if (oldLoader) {
+            oldLoader.remove();
+        }
+
+        const loader = document.createElement('div');
+        loader.id = 'mz-store-loader';
+
+        const storeLogo =
+            document.querySelector('.header-logo img.image-logo.d-block.d-lg-none') ||
+            document.querySelector('.header-logo img.image-logo.d-none.d-lg-block') ||
+            document.querySelector('.header-logo img') ||
+            document.querySelector('img.image-logo');
+
+        const logo = document.createElement('img');
+        logo.className = 'mz-loader-logo';
+
+        if (storeLogo) {
+            logo.src = storeLogo.currentSrc || storeLogo.src;
+            logo.alt = 'مزاج ريفي';
+        }
+
+        const textBox = document.createElement('div');
+        textBox.className = 'mz-loader-text';
+
+        const brandName = document.createElement('div');
+        brandName.className = 'mz-loader-brand';
+        brandName.textContent = 'مزاج ريفي';
+
+        const tagline = document.createElement('div');
+        tagline.className = 'mz-loader-tagline';
+        tagline.textContent = 'الطريق الأنيق لإرسال مشاعرك';
+
+        textBox.appendChild(brandName);
+        textBox.appendChild(tagline);
+
+        const loadingLine = document.createElement('div');
+        loadingLine.className = 'mz-loader-line';
+
+        loader.appendChild(logo);
+        loader.appendChild(textBox);
+        loader.appendChild(loadingLine);
+
+        document.body.appendChild(loader);
+
+        let loaderClosed = false;
+
+        function hideLoader() {
+            if (loaderClosed) return;
+
+            loaderClosed = true;
+            loader.classList.add('mz-loader-hide');
+
+            setTimeout(function () {
+                if (loader.parentNode) {
+                    loader.remove();
+                }
+            }, 700);
+        }
+
+        if (document.readyState === 'complete') {
+            setTimeout(hideLoader, 1000);
+        } else {
+            window.addEventListener(
+                'load',
+                function () {
+                    setTimeout(hideLoader, 1000);
+                },
+                { once: true }
+            );
+        }
+
+        setTimeout(hideLoader, 4000);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            createMzLoader,
+            { once: true }
+        );
+    } else {
+        createMzLoader();
+    }
+
+})();
+
+/* =========================================================
+   MZAJ RIFI - SIDE MENU FINAL
+   ========================================================= */
+
+;(function () {
+
+    let menuFixScheduled = false;
+
+    function closeMzSideMenu(event) {
+
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        if (typeof window.closeSlidingMenu === 'function') {
+            window.closeSlidingMenu();
+            return;
+        }
+
+        const overlay = document.getElementById('sidenav-overlay');
+
+        if (overlay) {
+            overlay.click();
+            return;
+        }
+
+        document.body.classList.remove('sidenav-open');
+    }
+
+    function fixMzSideMenu() {
+
+        const menus = document.querySelectorAll(
+            '.slide-menu, #slide-menu, [class~="slide-menu"]'
+        );
+
+        menus.forEach(function (menu) {
+
+            if (!menu.querySelector('a')) return;
+
+            menu.classList.add('mz-rifi-side-menu');
+
+            menu.style.setProperty('background', '#efd7e7', 'important');
+            menu.style.setProperty('background-color', '#efd7e7', 'important');
+
+            menu.querySelectorAll('ul, li').forEach(function (el) {
+                el.style.setProperty('background', '#efd7e7', 'important');
+                el.style.setProperty('background-color', '#efd7e7', 'important');
+            });
+
+            menu.querySelectorAll('li').forEach(function (li) {
+                const text = li.textContent.trim();
+                const link = li.querySelector('a');
+
+                if (!text && !link) {
+                    li.style.setProperty('display', 'none', 'important');
+                }
+            });
+
+            let title = menu.querySelector('.mz-menu-main-title');
+
+            if (!title) {
+                title = document.createElement('div');
+                title.className = 'mz-menu-main-title';
+
+                const firstList = menu.querySelector('ul');
+
+                if (firstList && firstList.parentNode) {
+                    firstList.parentNode.insertBefore(title, firstList);
+                } else {
+                    menu.prepend(title);
+                }
+            }
+
+            let titleText = title.querySelector('.mz-menu-title-text');
+
+            if (!titleText) {
+
+                Array.from(title.childNodes).forEach(function (node) {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        node.remove();
+                    }
+                });
+
+                titleText = document.createElement('span');
+                titleText.className = 'mz-menu-title-text';
+                titleText.textContent = 'القائمة الرئيسية';
+
+                title.prepend(titleText);
+            }
+
+            title.style.setProperty('position', 'relative', 'important');
+            title.style.setProperty('display', 'flex', 'important');
+            title.style.setProperty('align-items', 'center', 'important');
+            title.style.setProperty('justify-content', 'flex-start', 'important');
+            title.style.setProperty('direction', 'rtl', 'important');
+            title.style.setProperty('width', '100%', 'important');
+            title.style.setProperty('min-height', '56px', 'important');
+            title.style.setProperty('margin', '0', 'important');
+            title.style.setProperty('padding', '0 15px 0 58px', 'important');
+            title.style.setProperty('box-sizing', 'border-box', 'important');
+            title.style.setProperty('text-align', 'right', 'important');
+            title.style.setProperty('background', '#6f1f49', 'important');
+            title.style.setProperty('background-color', '#6f1f49', 'important');
+
+            titleText.style.setProperty('display', 'block', 'important');
+            titleText.style.setProperty('flex', '1 1 auto', 'important');
+            titleText.style.setProperty('width', 'auto', 'important');
+            titleText.style.setProperty('margin', '0', 'important');
+            titleText.style.setProperty('padding', '0', 'important');
+            titleText.style.setProperty('text-align', 'right', 'important');
+            titleText.style.setProperty('direction', 'rtl', 'important');
+            titleText.style.setProperty('color', '#ffffff', 'important');
+            titleText.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
+
+            let closeBtn = title.querySelector('.mz-menu-close-btn');
+
+            if (!closeBtn) {
+                closeBtn = document.createElement('button');
+                closeBtn.type = 'button';
+                closeBtn.className = 'mz-menu-close-btn';
+                closeBtn.setAttribute('aria-label', 'إغلاق القائمة');
+                closeBtn.innerHTML = '&times;';
+                closeBtn.addEventListener('click', closeMzSideMenu);
+
+                title.appendChild(closeBtn);
+            }
+
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.style.setProperty('color', '#6f1f49', 'important');
+                link.style.setProperty('-webkit-text-fill-color', '#6f1f49', 'important');
+                link.style.setProperty('text-align', 'right', 'important');
+                link.style.setProperty('direction', 'rtl', 'important');
+            });
+
+        });
+
+    }
+
+    function scheduleMzSideMenuFix() {
+        if (menuFixScheduled) return;
+
+        menuFixScheduled = true;
+
+        requestAnimationFrame(function () {
+            menuFixScheduled = false;
+            fixMzSideMenu();
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            scheduleMzSideMenuFix,
+            { once: true }
+        );
+    } else {
+        scheduleMzSideMenuFix();
+    }
+
+    document.addEventListener('click', function () {
+        setTimeout(scheduleMzSideMenuFix, 50);
+        setTimeout(scheduleMzSideMenuFix, 200);
+    });
