@@ -3,7 +3,7 @@ name: Assemble exact custom JS
 on:
   push:
     paths:
-      - 'tmp-mzaj-upload/chunk-10.part'
+      - 'tmp-mzaj-upload/exact/chunk-016.part'
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Assemble exact source
-        run: cat tmp-mzaj-upload/chunk-*.part > js/custom.js
+        run: cat tmp-mzaj-upload/exact/chunk-*.part > js/custom.js
       - name: Commit assembled file
         run: |
           if git diff --quiet -- js/custom.js; then
