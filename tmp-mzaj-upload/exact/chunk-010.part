@@ -1,0 +1,184 @@
+        }
+    }
+
+    function createLoader() {
+        if (document.getElementById(LOADER_ID)) {
+            return document.getElementById(LOADER_ID);
+        }
+
+        const loader = document.createElement('div');
+        loader.id = LOADER_ID;
+
+        loader.innerHTML = `
+            <div class="mz-loader-content" aria-hidden="true">
+                <div class="mz-loader-butterfly">🦋</div>
+                <div class="mz-loader-spinner"></div>
+            </div>
+        `;
+
+        document.documentElement.classList.add(ACTIVE_CLASS);
+        document.body.appendChild(loader);
+
+        return loader;
+    }
+
+    function startHomeLoader() {
+        /* لا يظهر في السلة أو المنتجات أو الأقسام أو أي صفحة فرعية */
+        if (!isHomePage()) return;
+
+        /* لا يظهر أكثر من مرة في نفس جلسة التصفح */
+        if (wasShownThisSession()) return;
+
+        markAsShown();
+
+        const loader = createLoader();
+        if (!loader) return;
+
+        const startedAt = Date.now();
+        const minimumVisibleTime = 750;
+        let hideStarted = false;
+
+        function hideLoader() {
+            if (hideStarted) return;
+            hideStarted = true;
+
+            const elapsed = Date.now() - startedAt;
+            const remaining = Math.max(0, minimumVisibleTime - elapsed);
+
+            window.setTimeout(function () {
+                loader.classList.add(HIDE_CLASS);
+                document.documentElement.classList.remove(ACTIVE_CLASS);
+
+                window.setTimeout(function () {
+                    if (loader && loader.parentNode) {
+                        loader.parentNode.removeChild(loader);
+                    }
+                }, 450);
+            }, remaining);
+        }
+
+        if (document.readyState === 'complete') {
+            hideLoader();
+        } else {
+            window.addEventListener('load', hideLoader, { once: true });
+        }
+
+        /* حماية من بقاء اللودينج إذا تأخر عنصر خارجي */
+        window.setTimeout(hideLoader, 3500);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startHomeLoader, { once: true });
+    } else {
+        startHomeLoader();
+    }
+
+})();
+/* =========================================================
+   MZAJ RIFI - CART BUTTONS
+   إرسال + إتمام الطلب
+   ========================================================= */
+
+(function () {
+
+    function applyCartButtons() {
+
+        /* يعمل في صفحة السلة فقط */
+        if (
+            window.location.pathname !== '/cart' &&
+            !window.location.pathname.startsWith('/cart/')
+        ) {
+            return;
+        }
+
+        const elements = document.querySelectorAll(
+            'button, a'
+        );
+
+        elements.forEach(function (element) {
+
+            const text = (element.textContent || '')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            /* زر إرسال */
+            if (text === 'إرسال') {
+
+                element.classList.add(
+                    'mz-cart-action-animated'
+                );
+
+                element.classList.add(
+                    'mz-cart-send-btn'
+                );
+            }
+
+            /* زر إتمام الطلب */
+            if (text.includes('إتمام الطلب')) {
+
+                element.classList.add(
+                    'mz-cart-action-animated'
+                );
+
+                element.classList.add(
+                    'mz-cart-checkout-btn'
+                );
+            }
+
+        });
+
+    }
+
+
+    if (document.readyState === 'loading') {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            applyCartButtons
+        );
+
+    } else {
+
+        applyCartButtons();
+
+    }
+
+
+    setTimeout(applyCartButtons, 300);
+    setTimeout(applyCartButtons, 800);
+    setTimeout(applyCartButtons, 1500);
+
+
+    /* في حال أعادت المنصة بناء محتوى السلة */
+    const observer = new MutationObserver(
+        applyCartButtons
+    );
+
+    observer.observe(
+        document.body,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+})();
+/* =========================================================
+   MZAJ RIFI - CART TOTAL ABOVE ACCOUNT ICON
+   Desktop only
+   ========================================================= */
+
+(function () {
+
+    const desktopMQ =
+        window.matchMedia('(min-width: 992px)');
+
+    function cleanText(text) {
+
+        return (text || '')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+
+    function getHeader() {
