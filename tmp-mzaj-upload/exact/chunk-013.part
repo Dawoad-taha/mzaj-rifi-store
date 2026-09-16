@@ -1,0 +1,184 @@
+
+
+        if (
+            headings.length < 2
+        ) {
+            return;
+        }
+
+
+        headings.forEach(
+            function (
+                heading,
+                index
+            ) {
+
+                if (index === 0) {
+                    return;
+                }
+
+
+                const separator =
+                    document.createElement(
+                        'div'
+                    );
+
+
+                separator.className =
+                    'mz-footer-section-separator';
+
+
+                heading.parentNode.insertBefore(
+                    separator,
+                    heading
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       DESKTOP
+       فاصل بين كل عمودين
+       ========================================= */
+
+    function buildDesktopSeparators(
+        footer
+    ) {
+
+        const row =
+            getMainRow(
+                footer
+            );
+
+
+        if (!row) {
+            return;
+        }
+
+
+        row.style.setProperty(
+            'position',
+            'relative',
+            'important'
+        );
+
+
+        const columns =
+            Array.from(
+                row.children
+            ).filter(function (element) {
+
+                const rect =
+                    element.getBoundingClientRect();
+
+
+                return (
+                    rect.width > 50 &&
+                    rect.height > 50
+                );
+
+            });
+
+
+        /*
+         ترتيب الأعمدة حسب موقعها الحقيقي
+        */
+        columns.sort(
+            function (a, b) {
+
+                return (
+                    a.getBoundingClientRect().left -
+                    b.getBoundingClientRect().left
+                );
+
+            }
+        );
+
+
+        const rowRect =
+            row.getBoundingClientRect();
+
+
+        for (
+            let i = 0;
+            i < columns.length - 1;
+            i++
+        ) {
+
+            const first =
+                columns[i]
+                    .getBoundingClientRect();
+
+
+            const second =
+                columns[i + 1]
+                    .getBoundingClientRect();
+
+
+            /*
+             منتصف الفراغ بين العمودين
+            */
+            const x =
+                (
+                    first.right +
+                    second.left
+                ) / 2 -
+                rowRect.left;
+
+
+            const separator =
+                document.createElement(
+                    'div'
+                );
+
+
+            separator.className =
+                'mz-footer-desktop-vseparator';
+
+
+            separator.style.left =
+                x + 'px';
+
+
+            row.appendChild(
+                separator
+            );
+
+        }
+
+
+        /*
+         إذا كان داخل العمود نفسه
+         أكثر من قسم مثل:
+         موقعنا + تواصل معنا
+         نضيف فاصل أفقي بينهما.
+        */
+
+        columns.forEach(
+            function (column) {
+
+                const headings =
+                    getSectionHeadings(
+                        column
+                    );
+
+
+                if (
+                    headings.length < 2
+                ) {
+                    return;
+                }
+
+
+                headings.forEach(
+                    function (
+                        heading,
+                        index
+                    ) {
+
+                        if (index === 0) {
+                            return;
+                        }
