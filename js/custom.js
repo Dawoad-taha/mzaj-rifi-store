@@ -1,16 +1,17 @@
-/* MZAJ RIFI - PUBLIC JAVASCRIPT BUNDLE LOADER v1.0.1 */
+/* MZAJ RIFI - FIXED PUBLIC JAVASCRIPT BUILD v1.1.0 */
 ;(function () {
-    if (window.__MZAJ_RIFI_BUNDLE_LOADED__) return;
-    window.__MZAJ_RIFI_BUNDLE_LOADED__ = true;
+    if (window.__MZAJ_RIFI_FIXED_BUILD_LOADED__) return;
+    window.__MZAJ_RIFI_FIXED_BUILD_LOADED__ = true;
 
     const base = 'https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/';
-    const version = '1.0.1';
+    const version = '1.1.0';
+
     const files = [
-        'docs/js/part-1.js',
-        'js/parts/part-2a.js',
-        'js/parts/part-2b.js',
+        'js/fixed-v1/part-1.js',
+        'js/fixed-v1/part-2.js',
+        'js/fixed-v1/part-3.js',
         'js/parts/part-3.js',
-        'js/parts/part-4.js',
+        'js/fixed-v1/patches.js',
         'js/parts/part-5.js',
         'js/parts/part-6.js',
         'js/parts/part-7.js'
@@ -31,11 +32,14 @@
     }
 
     let chain = Promise.resolve();
+
     files.forEach(function (file) {
-        chain = chain.then(function () { return loadScript(file); });
+        chain = chain.then(function () {
+            return loadScript(file);
+        });
     });
 
     chain.catch(function (error) {
-        console.error('[Mzaj Rifi] Bundle load error:', error);
+        console.error('[Mzaj Rifi] Fixed build load error:', error);
     });
 })();
