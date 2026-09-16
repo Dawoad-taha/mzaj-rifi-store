@@ -1,0 +1,184 @@
+
+
+    function countTitles(container) {
+
+        return getTargetTitles(container)
+            .length;
+    }
+
+
+    /*
+     إيجاد أصغر Container يمثل القسم نفسه
+     بدون ابتلاع القسم التالي.
+    */
+    function findSectionContainer(
+        title,
+        footer
+    ) {
+
+        let current =
+            title.parentElement;
+
+        let candidate =
+            current;
+
+
+        while (
+            current &&
+            current !== footer
+        ) {
+
+            const parent =
+                current.parentElement;
+
+
+            if (
+                !parent ||
+                parent === footer
+            ) {
+                break;
+            }
+
+
+            const titlesInside =
+                countTitles(parent);
+
+
+            /*
+             لو الـParent يحتوي أكثر من عنوان
+             فهذا يعني أنه يجمع أكثر من قسم.
+             إذن current هو القسم المطلوب.
+            */
+            if (titlesInside > 1) {
+                break;
+            }
+
+
+            candidate = parent;
+            current = parent;
+        }
+
+
+        return candidate;
+    }
+
+
+    /*
+     هل العنصر يحتوي نصًا مباشرًا فعليًا؟
+     وليس مجرد Wrapper كبير.
+    */
+    function hasDirectText(element) {
+
+        return Array.from(
+            element.childNodes
+        ).some(function (node) {
+
+            return (
+                node.nodeType === 3 &&
+                normalizeText(
+                    node.textContent
+                ).length > 0
+            );
+
+        });
+    }
+
+
+    /*
+     عدم لمس صور الدفع أو الأيقونات
+    */
+    function shouldIgnore(element) {
+
+        return !!element.closest(
+            '.mz-footer-section-separator,' +
+            '.mz-footer-desktop-vseparator,' +
+            '[class*="payment"],' +
+            '[class*="payments"],' +
+            '[class*="vat"],' +
+            '[class*="logo"]'
+        );
+    }
+
+
+    function markTextElements(section) {
+
+        const elements =
+            section.querySelectorAll(
+                'p,a,li,span,small,strong,' +
+                'h1,h2,h3,h4,h5,h6,div'
+            );
+
+
+        elements.forEach(function (element) {
+
+            if (
+                shouldIgnore(element)
+            ) {
+                return;
+            }
+
+
+            if (
+                element.classList.contains(
+                    'mz-footer-typo-title'
+                )
+            ) {
+                return;
+            }
+
+
+            /*
+             نكبر فقط العنصر الذي يحمل النص فعليًا،
+             وليس الحاويات الكبيرة.
+            */
+            if (
+                hasDirectText(element)
+            ) {
+
+                element.classList.add(
+                    'mz-footer-typo-text'
+                );
+
+            }
+
+        });
+    }
+
+
+    function applyFooterTypography() {
+
+        const footer =
+            getFooter();
+
+
+        if (!footer) {
+            return;
+        }
+
+
+        footer.classList.add(
+            'mz-footer-typography-ready'
+        );
+
+
+        /*
+         تنظيف Classes السابقة قبل إعادة التطبيق
+        */
+        footer.querySelectorAll(
+            '.mz-footer-typo-title,' +
+            '.mz-footer-typo-text,' +
+            '.mz-footer-typo-section'
+        ).forEach(function (element) {
+
+            element.classList.remove(
+                'mz-footer-typo-title',
+                'mz-footer-typo-text',
+                'mz-footer-typo-section'
+            );
+
+        });
+
+
+        const titles =
+            getTargetTitles(footer);
+
