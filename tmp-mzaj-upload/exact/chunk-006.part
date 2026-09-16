@@ -1,0 +1,184 @@
+
+        if (!cartButton || !buyButton) {
+            return;
+        }
+
+
+        /* الكلاسات على الأزرار نفسها */
+        cartButton.classList.add(
+            'mz-product-cart-btn'
+        );
+
+        buyButton.classList.add(
+            'mz-product-buy-btn'
+        );
+
+
+        /* =========================================
+           إيجاد الصف المشترك
+           ========================================= */
+
+        let row = cartButton.parentElement;
+
+        while (
+            row &&
+            row !== document.body &&
+            !row.contains(buyButton)
+        ) {
+            row = row.parentElement;
+        }
+
+
+        if (!row || row === document.body) {
+            return;
+        }
+
+
+        /*
+         نريد أقرب Flex يحتوي القلب + الزرين،
+         وليس حاوية كبيرة من الصفحة.
+        */
+
+        while (
+            row.parentElement &&
+            row.children.length < 2 &&
+            row.parentElement.contains(buyButton)
+        ) {
+            row = row.parentElement;
+        }
+
+
+        row.classList.add(
+            'mz-product-actions-row'
+        );
+
+
+        /* =========================================
+           معرفة الخانتين المباشرتين
+           ========================================= */
+
+        const cartCell =
+            getDirectChild(
+                cartButton,
+                row
+            );
+
+        const buyCell =
+            getDirectChild(
+                buyButton,
+                row
+            );
+
+
+        if (!cartCell || !buyCell) {
+            return;
+        }
+
+
+        cartCell.classList.add(
+            'mz-product-cart-cell'
+        );
+
+        buyCell.classList.add(
+            'mz-product-buy-cell'
+        );
+
+
+        /* =========================================
+           حذف القلب وأي خانة ثالثة نهائياً
+           ========================================= */
+
+        Array.from(row.children)
+            .forEach(function (child) {
+
+                if (
+                    child !== cartCell &&
+                    child !== buyCell
+                ) {
+
+                    child.style.setProperty(
+                        'display',
+                        'none',
+                        'important'
+                    );
+
+                    child.style.setProperty(
+                        'width',
+                        '0',
+                        'important'
+                    );
+
+                    child.style.setProperty(
+                        'min-width',
+                        '0',
+                        'important'
+                    );
+
+                    child.style.setProperty(
+                        'max-width',
+                        '0',
+                        'important'
+                    );
+
+                    child.style.setProperty(
+                        'margin',
+                        '0',
+                        'important'
+                    );
+
+                    child.style.setProperty(
+                        'padding',
+                        '0',
+                        'important'
+                    );
+                }
+
+            });
+
+
+        /* =========================================
+           فرض تمدد الصف نفسه
+           ========================================= */
+
+        row.style.setProperty(
+            'display',
+            'flex',
+            'important'
+        );
+
+        row.style.setProperty(
+            'width',
+            '100%',
+            'important'
+        );
+
+        row.style.setProperty(
+            'max-width',
+            '100%',
+            'important'
+        );
+
+        row.style.setProperty(
+            'gap',
+            '10px',
+            'important'
+        );
+
+        row.style.setProperty(
+            'padding',
+            '0',
+            'important'
+        );
+
+
+        /* =========================================
+           كل زر يأخذ نصف المساحة
+           ========================================= */
+
+        [cartCell, buyCell]
+            .forEach(function (cell) {
+
+                cell.style.setProperty(
+                    'display',
+                    'flex',
+                    'important'
