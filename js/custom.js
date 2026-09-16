@@ -742,14 +742,6 @@
         title.style.setProperty('width', '100%', 'important');
         title.style.setProperty('max-width', '100%', 'important');
         title.style.setProperty('box-sizing', 'border-box', 'important');
-
-        title.style.setProperty('position', 'relative', 'important');
-        title.style.setProperty('display', 'flex', 'important');
-        title.style.setProperty('align-items', 'center', 'important');
-        title.style.setProperty('justify-content', 'center', 'important');
-        title.style.setProperty('width', '100%', 'important');
-        title.style.setProperty('max-width', '100%', 'important');
-        title.style.setProperty('box-sizing', 'border-box', 'important');
         title.style.setProperty('text-align', 'center', 'important');
         title.style.setProperty('direction', 'rtl', 'important');
         title.style.setProperty('margin', '18px auto 20px', 'important');
@@ -1109,7 +1101,8 @@
                 cell.style.setProperty(
                     'display',
                     'flex',
-                    'important'                );
+                    'important'
+                );
 
                 cell.style.setProperty(
                     'flex',
