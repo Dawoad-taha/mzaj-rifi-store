@@ -1,0 +1,184 @@
+        return ref.closest('a[href], button, [role="button"]') || ref;
+    }
+
+    function getDesktopLogoLink() {
+        const link = document.querySelector('.search-header .header-logo > a');
+        if (!link) return null;
+        link.classList.remove('mz-centered-logo');
+        return link;
+    }
+
+    function positionHeaderElements(headerBar) {
+        if (!headerBar) return;
+
+        const cart = getCartClickable(headerBar);
+        const account = prepareNativeLogin(headerBar);
+        const logo = getDesktopLogoLink();
+
+        if (!cart || !account) return;
+
+        headerBar.style.setProperty('position', 'relative', 'important');
+        headerBar.style.setProperty('z-index', '1000', 'important');
+        headerBar.style.setProperty('pointer-events', 'auto', 'important');
+
+        cart.style.setProperty('position', 'relative', 'important');
+        cart.style.setProperty('z-index', '1200', 'important');
+        cart.style.setProperty('pointer-events', 'auto', 'important');
+        cart.style.setProperty('cursor', 'pointer', 'important');
+
+        const headerRect = headerBar.getBoundingClientRect();
+        const cartRect = cart.getBoundingClientRect();
+        const cartLeft = cartRect.left - headerRect.left;
+        const cartRight = cartRect.right - headerRect.left;
+
+        const accountHost =
+            account.closest('.mz-native-account-host') ||
+            account;
+
+        accountHost.style.setProperty('position', 'absolute', 'important');
+        accountHost.style.setProperty('left', Math.round(cartRight + 12) + 'px', 'important');
+        accountHost.style.setProperty('right', 'auto', 'important');
+        accountHost.style.setProperty('top', '50%', 'important');
+        accountHost.style.setProperty('transform', 'translateY(-50%)', 'important');
+        accountHost.style.setProperty('width', '42px', 'important');
+        accountHost.style.setProperty('height', '42px', 'important');
+        accountHost.style.setProperty('margin', '0', 'important');
+        accountHost.style.setProperty('padding', '0', 'important');
+        accountHost.style.setProperty('z-index', '1300', 'important');
+        accountHost.style.setProperty('pointer-events', 'auto', 'important');
+        accountHost.style.setProperty('cursor', 'pointer', 'important');
+        accountHost.style.setProperty('overflow', 'visible', 'important');
+
+        account.style.setProperty('pointer-events', 'auto', 'important');
+        account.style.setProperty('cursor', 'pointer', 'important');
+        account.style.setProperty('z-index', '1301', 'important');
+
+        const svg = account.querySelector('svg.mz-native-account-svg');
+        if (svg) {
+            svg.style.setProperty('width', '35px', 'important');
+            svg.style.setProperty('height', '35px', 'important');
+            svg.style.setProperty('fill', 'none', 'important');
+            svg.style.setProperty('stroke', '#6f1f49', 'important');
+            svg.style.setProperty('stroke-width', '1.7', 'important');
+            svg.style.setProperty('stroke-linecap', 'round', 'important');
+            svg.style.setProperty('stroke-linejoin', 'round', 'important');
+            svg.style.setProperty('pointer-events', 'none', 'important');
+        }
+
+        if (logo) {
+            const sideDistance = Math.max(20, Math.round(cartLeft));
+            logo.style.setProperty('position', 'absolute', 'important');
+            logo.style.setProperty('right', sideDistance + 'px', 'important');
+            logo.style.setProperty('left', 'auto', 'important');
+            logo.style.setProperty('top', '50%', 'important');
+            logo.style.setProperty('transform', 'translateY(-50%)', 'important');
+            logo.style.setProperty('margin', '0', 'important');
+            logo.style.setProperty('padding', '0', 'important');
+            logo.style.setProperty('z-index', '1200', 'important');
+            logo.style.setProperty('pointer-events', 'auto', 'important');
+            logo.style.setProperty('cursor', 'pointer', 'important');
+        }
+    }
+
+    function applyDesktopHeader() {
+        if (!desktopMQ.matches) return;
+
+        const headerBar = getHeaderBar();
+        if (!headerBar) return;
+
+        ensureDesktopCategories(headerBar);
+        hideCountryOnly();
+        positionHeaderElements(headerBar);
+    }
+
+    /*
+     * Fallback أخير للروابط المخصصة فقط.
+     * لا يتدخل في زر الدخول الأصلي أو سلة زد.
+     */
+    document.addEventListener('click', function (event) {
+        if (!desktopMQ.matches) return;
+
+        const link = event.target.closest(
+            '.mz-desktop-category-link[href], #mz-category-slider-final a.mzfinal-card[href]'
+        );
+
+        if (!link) return;
+
+        const href = link.href;
+        if (!href) return;
+
+        event.preventDefault();
+        window.location.assign(href);
+    }, false);
+
+    function scheduleApply() {
+        clearTimeout(timer);
+        timer = setTimeout(applyDesktopHeader, 100);
+    }
+
+    function startObserver() {
+        if (observer) return;
+
+        observer = new MutationObserver(function () {
+            if (!desktopMQ.matches) return;
+            scheduleApply();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    function start() {
+        if (!desktopMQ.matches) return;
+
+        applyDesktopHeader();
+        startObserver();
+        setTimeout(applyDesktopHeader, 300);
+        setTimeout(applyDesktopHeader, 800);
+        setTimeout(applyDesktopHeader, 1500);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+    } else {
+        start();
+    }
+
+    window.addEventListener('resize', function () {
+        if (desktopMQ.matches) scheduleApply();
+    });
+
+})();
+/* =========================================================
+   MZAJ RIFI - FIRST VISIT HOMEPAGE LOADER
+   يظهر مرة واحدة فقط في الجلسة وعلى الصفحة الرئيسية فقط
+   ========================================================= */
+;(function () {
+
+    const LOADER_KEY = 'mzaj_home_loader_seen';
+    const LOADER_ID = 'mz-first-home-loader';
+    const ACTIVE_CLASS = 'mz-loader-active';
+    const HIDE_CLASS = 'mz-loader-hide';
+
+    function isHomePage() {
+        const path = (window.location.pathname || '/')
+            .replace(/\/+$/, '');
+
+        return path === '' || path === '/';
+    }
+
+    function wasShownThisSession() {
+        try {
+            return window.sessionStorage.getItem(LOADER_KEY) === '1';
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function markAsShown() {
+        try {
+            window.sessionStorage.setItem(LOADER_KEY, '1');
+        } catch (error) {
+            /* إذا كان التخزين محظوراً، نكمل بدون تعطيل الصفحة */
