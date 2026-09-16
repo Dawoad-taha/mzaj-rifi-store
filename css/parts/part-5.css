@@ -1,0 +1,518 @@
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    html body .search-header .search-header-bar.mz-desktop-header-bar,
+    html body .search-header .search-header-bar,
+    html body .search-header-bar {
+        min-height: 76px !important;
+        height: 76px !important;
+    }
+
+    html body .search-header .header-logo img.image-logo.d-none.d-lg-block {
+        height: 50px !important;
+        max-height: 50px !important;
+    }
+
+    html body .mz-desktop-categories-inline {
+        width: calc(100% - 360px) !important;
+        gap: 12px !important;
+    }
+
+    html body .mz-desktop-category-link {
+        font-size: 12px !important;
+    }
+}
+
+/* =========================================================
+   MZAJ RIFI - CART ACTION BUTTONS - CLEAN FINAL
+   زر إرسال + زر إتمام الطلب: نص أبيض + لمعان متحرك
+   ========================================================= */
+
+/* زر إتمام الطلب */
+html body a.btn.btn-primary.btn-lg.btn-block[href*="checkout"],
+html body a.btn.btn-primary[href*="checkout"] {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #601f49 !important;
+    border-color: #601f49 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-weight: 600 !important;
+    transition: transform .25s ease, box-shadow .25s ease !important;
+}
+
+/* زر إرسال قسيمة الخصم */
+html body [class*="coupon"] button.btn.btn-primary,
+html body [class*="coupon"] .btn.btn-primary[type="button"],
+html body [class*="coupon"] .btn.btn-primary[type="submit"] {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #601f49 !important;
+    border-color: #601f49 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-weight: 600 !important;
+    transition: transform .25s ease, box-shadow .25s ease !important;
+}
+
+/* أي عنصر داخلي داخل الزرين */
+html body a.btn.btn-primary[href*="checkout"] *,
+html body [class*="coupon"] button.btn.btn-primary * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* اللمعة */
+html body a.btn.btn-primary[href*="checkout"]::before,
+html body [class*="coupon"] button.btn.btn-primary::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: -65% !important;
+    width: 38% !important;
+
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255,255,255,.08) 25%,
+        rgba(255,255,255,.52) 50%,
+        rgba(255,255,255,.08) 75%,
+        transparent 100%
+    ) !important;
+
+    transform: skewX(-22deg) !important;
+    animation: mzCartActionShine 2.2s ease-in-out infinite !important;
+    pointer-events: none !important;
+}
+
+/* Hover */
+html body a.btn.btn-primary[href*="checkout"]:hover,
+html body [class*="coupon"] button.btn.btn-primary:hover {
+    background: #711f56 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 7px 18px rgba(96,31,73,.23) !important;
+}
+
+@keyframes mzCartActionShine {
+    0% {
+        left: -65%;
+    }
+
+    45%,
+    100% {
+        left: 130%;
+    }
+}
+/* =========================================
+   إخفاء سعر السلة من هيدر اللابتوب
+   ========================================= */
+
+@media (min-width: 992px) {
+
+    html body h3.cart-header-total {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+
+        width: 0 !important;
+        height: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+    }
+
+}
+/* =========================================
+   أنميشن أسماء التصنيفات - توتي / زهري
+   ========================================= */
+
+/* رابط/عنوان التصنيف */
+html body .category-items a span,
+html body .category-item a span,
+html body a[href*="/categories/"] span {
+    background: linear-gradient(
+        90deg,
+        #7a1f49 0%,
+        #c04d87 25%,
+        #f2acc0 50%,
+        #c04d87 75%,
+        #7a1f49 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    animation: mzajCategoryTextFlow 4s linear infinite;
+    font-weight: 700 !important;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: inline-block;
+}
+
+/* حركة خفيفة عند المرور */
+html body .category-items a:hover span,
+html body .category-item a:hover span,
+html body a[href*="/categories/"]:hover span {
+    transform: scale(1.03);
+    opacity: 0.95;
+}
+
+/* الحركة */
+@keyframes mzajCategoryTextFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+/* =========================================================
+   إلغاء أنميشن التصنيفات داخل القائمة الجانبية فقط
+   ========================================================= */
+
+html body .mz-rifi-side-menu a span,
+html body .mz-rifi-side-menu .clickable-span,
+html body .mz-rifi-side-menu span {
+    background: none !important;
+    background-image: none !important;
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+
+    animation: none !important;
+    transform: none !important;
+
+    text-shadow: none !important;
+    opacity: 1 !important;
+}
+/* =========================================================
+   توحيد سماكة خط القائمة الجانبية مع الهيدر
+   ========================================================= */
+
+/* جميع روابط الأقسام */
+html body .mz-rifi-side-menu li > a,
+html body .mz-rifi-side-menu .menu-link,
+html body .mz-rifi-side-menu li > a span,
+html body .mz-rifi-side-menu .menu-link span,
+html body .mz-rifi-side-menu .clickable-span {
+    font-weight: 500 !important;
+
+    font-family: inherit !important;
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+}
+
+
+/* عنوان القائمة الرئيسية يبقى أوضح */
+html body .mz-rifi-side-menu .mz-menu-main-title,
+html body .mz-rifi-side-menu .mz-menu-main-title > span {
+    font-weight: 700 !important;
+
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+/* =========================================================
+   MZAJ RIFI - FOOTER FINAL V4
+   Flower Background + JS Separators
+   ========================================================= */
+
+
+/* =========================================
+   الفوتر
+   ========================================= */
+
+html body .footer-store-section,
+html body footer .footer-store-section,
+html body footer section.footer-theme-bg {
+    position: relative !important;
+    overflow: hidden !important;
+
+    background: transparent !important;
+
+    isolation: isolate !important;
+}
+
+
+/* =========================================
+   صورة الورد
+   ========================================= */
+
+html body .footer-store-section::before,
+html body footer section.footer-theme-bg::before {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    background-image:
+        url("https://res.cloudinary.com/ikuuccsf/image/upload/v1789569646/a7400d5e-c0af-4273-b757-03397887e2af.webp")
+        !important;
+
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+
+    /*
+       رفعنا وضوح الورود
+    */
+    opacity: .52 !important;
+
+    filter:
+        brightness(1.01)
+        saturate(.98)
+        contrast(1.03)
+        !important;
+
+    pointer-events: none !important;
+
+    z-index: -2 !important;
+}
+
+
+/* طبقة بيضاء أخف من السابق
+   حتى تظهر الورود أكثر */
+html body .footer-store-section::after,
+html body footer section.footer-theme-bg::after {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    background:
+        rgba(255,255,255,.38)
+        !important;
+
+    pointer-events: none !important;
+
+    z-index: -1 !important;
+}
+
+
+/* المحتوى فوق الصورة */
+html body .footer-store-section > *,
+html body footer section.footer-theme-bg > *,
+html body .footer-store-section .container,
+html body footer section.footer-theme-bg .container {
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+
+/* =========================================
+   العناوين
+   ========================================= */
+
+html body .footer-store-section h2,
+html body .footer-store-section h3,
+html body .footer-store-section h4,
+html body .footer-store-section .footer-title,
+
+html body footer section.footer-theme-bg h2,
+html body footer section.footer-theme-bg h3,
+html body footer section.footer-theme-bg h4 {
+    position: relative !important;
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+
+    font-weight: 700 !important;
+
+    margin-bottom: 14px !important;
+}
+
+
+/* =========================================
+   النصوص
+   ========================================= */
+
+html body .footer-store-section p,
+html body .footer-store-section li,
+
+html body footer section.footer-theme-bg p,
+html body footer section.footer-theme-bg li {
+    color: #685965 !important;
+}
+
+
+/* الروابط */
+html body .footer-store-section a,
+html body footer section.footer-theme-bg a {
+    color: #685965 !important;
+
+    text-decoration: none !important;
+
+    transition:
+        color .25s ease,
+        transform .25s ease
+        !important;
+}
+
+
+html body .footer-store-section a:hover,
+html body footer section.footer-theme-bg a:hover {
+    color: #6f1f49 !important;
+
+    transform:
+        translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   SOCIAL ICONS - توتي
+   ========================================================= */
+
+html body .footer-store-section a[href*="instagram"],
+html body .footer-store-section a[href*="snapchat"],
+html body .footer-store-section a[href*="tiktok"],
+html body .footer-store-section a[href*="twitter"],
+html body .footer-store-section a[href*="x.com"],
+html body .footer-store-section a[href^="tel:"],
+html body .footer-store-section a[href^="mailto:"],
+
+html body footer section.footer-theme-bg a[href*="instagram"],
+html body footer section.footer-theme-bg a[href*="snapchat"],
+html body footer section.footer-theme-bg a[href*="tiktok"],
+html body footer section.footer-theme-bg a[href*="twitter"],
+html body footer section.footer-theme-bg a[href*="x.com"],
+html body footer section.footer-theme-bg a[href^="tel:"],
+html body footer section.footer-theme-bg a[href^="mailto:"] {
+
+    color: #6f1f49 !important;
+
+    -webkit-text-fill-color:
+        #6f1f49 !important;
+
+    border-color:
+        #6f1f49 !important;
+}
+
+
+/* Font Icons */
+html body .footer-store-section a[href*="instagram"] i,
+html body .footer-store-section a[href*="snapchat"] i,
+html body .footer-store-section a[href*="tiktok"] i,
+html body .footer-store-section a[href*="twitter"] i,
+html body .footer-store-section a[href*="x.com"] i,
+html body .footer-store-section a[href^="tel:"] i,
+html body .footer-store-section a[href^="mailto:"] i {
+    color: #6f1f49 !important;
+
+    -webkit-text-fill-color:
+        #6f1f49 !important;
+}
+
+
+/* SVG Social */
+html body .footer-store-section a[href*="instagram"] svg,
+html body .footer-store-section a[href*="snapchat"] svg,
+html body .footer-store-section a[href*="tiktok"] svg,
+html body .footer-store-section a[href*="twitter"] svg,
+html body .footer-store-section a[href*="x.com"] svg,
+html body .footer-store-section a[href^="tel:"] svg,
+html body .footer-store-section a[href^="mailto:"] svg {
+
+    color: #6f1f49 !important;
+
+    fill: #6f1f49 !important;
+    stroke: #6f1f49 !important;
+}
+
+
+/* Hover */
+html body .footer-store-section a[href*="instagram"]:hover,
+html body .footer-store-section a[href*="snapchat"]:hover,
+html body .footer-store-section a[href*="tiktok"]:hover,
+html body .footer-store-section a[href*="twitter"]:hover,
+html body .footer-store-section a[href*="x.com"]:hover,
+html body .footer-store-section a[href^="tel:"]:hover,
+html body .footer-store-section a[href^="mailto:"]:hover {
+
+    color: #aa4779 !important;
+
+    transform:
+        translateY(-3px)
+        scale(1.06)
+        !important;
+}
+
+
+/* =========================================================
+   الفاصل الأفقي الذي سيضيفه JavaScript
+   ========================================================= */
+
+.mz-footer-section-separator {
+    position: relative !important;
+
+    width: 76% !important;
+    height: 24px !important;
+
+    margin:
+        20px auto 24px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    clear: both !important;
+
+    pointer-events: none !important;
+}
+
+
+/* الخط */
+.mz-footer-section-separator::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 0 !important;
+    right: 0 !important;
+
+    top: 50% !important;
+
+    height: 2px !important;
+
+    transform:
+        translateY(-50%)
+        scaleX(.85);
+
+    background:
+        linear-gradient(
+            to right,
+
+            transparent,
+
+            rgba(111,31,73,.16),
+
+            rgba(189,77,135,.48),
+
+            rgba(236,174,204,1),
+
+            rgba(189,77,135,.48),
+
+            rgba(111,31,73,.16),
+
+            transparent
+        )
+        !important;
+
+    border-radius:
+        100px !important;
+
+    animation:
+        mzFooterSeparatorLine
+        3.2s ease-in-out
+        infinite
+        !important;
+}
+
+
+/* الدائرة والزخرفة */
