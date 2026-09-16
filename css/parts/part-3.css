@@ -1,0 +1,527 @@
+#mz-category-slider-final .mzfinal-card img {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1) !important;
+    transition: transform 0.45s cubic-bezier(.2,.7,.2,1) !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+}
+
+#mz-category-slider-final .mzfinal-card:hover,
+#mz-category-slider-final .mzfinal-card:focus {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+#mz-category-slider-final .mzfinal-card:hover img {
+    transform: scale(1.055) !important;
+}
+
+#mz-category-slider-final .mzfinal-card-disabled {
+    cursor: grab !important;
+}
+
+#mz-category-slider-final .mzfinal-image-wrap {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 12px !important;
+}
+
+#mz-category-slider-final .mzfinal-image {
+    width: 150px !important;
+    height: 150px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+#mz-category-slider-final .mzfinal-label {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #601f49 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    min-height: 54px !important;
+}
+
+#mz-category-slider-final .mzfinal-pagination {
+    width: 100% !important;
+    margin: 16px 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    direction: ltr !important;
+}
+
+#mz-category-slider-final .mzfinal-dot {
+    width: 8px !important;
+    min-width: 8px !important;
+    height: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 50px !important;
+    background: #d8c3cf !important;
+    box-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    cursor: pointer !important;
+    transition: width .3s ease, background .3s ease !important;
+}
+
+#mz-category-slider-final .mzfinal-dot.active {
+    width: 24px !important;
+    min-width: 24px !important;
+    border-radius: 999px !important;
+    background: #7b285c !important;
+}
+
+/* Desktop / Laptop */
+@media (min-width: 992px) {
+    #mz-category-slider-final .mzfinal-card {
+        flex: 0 0 calc((100% - 48px) / 4) !important;
+        width: calc((100% - 48px) / 4) !important;
+        max-width: calc((100% - 48px) / 4) !important;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #mz-category-slider-final .mzfinal-card {
+        flex: 0 0 calc((100% - 16px) / 2) !important;
+        width: calc((100% - 16px) / 2) !important;
+        max-width: calc((100% - 16px) / 2) !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+    #mz-category-slider-final {
+        padding: 16px 0 22px !important;
+    }
+
+    #mz-category-slider-final .mzfinal-title {
+        margin-bottom: 14px !important;
+        font-size: 22px !important;
+    }
+
+    #mz-category-slider-final .mzfinal-title::after {
+        width: 85px !important;
+    }
+
+    #mz-category-slider-final .mzfinal-viewport {
+        padding: 0 8px !important;
+    }
+
+    #mz-category-slider-final .mzfinal-track {
+        gap: 12px !important;
+    }
+
+    #mz-category-slider-final .mzfinal-card {
+        flex: 0 0 calc((100% - 12px) / 2) !important;
+        width: calc((100% - 12px) / 2) !important;
+        max-width: calc((100% - 12px) / 2) !important;
+    }
+
+    #mz-category-slider-final .mzfinal-image {
+        width: 110px !important;
+        height: 110px !important;
+    }
+
+    #mz-category-slider-final .mzfinal-label {
+        font-size: 14px !important;
+        line-height: 1.45 !important;
+        min-height: 42px !important;
+    }
+}
+
+/* =========================================================
+   MZAJ RIFI - CATEGORY PRODUCT CARDS
+   أبيض + بوردر رمادي + توسيط المحتوى
+   ========================================================= */
+
+
+/* =========================================
+   البطاقة نفسها
+   ========================================= */
+
+html body.mz-category-page .product-item {
+    position: relative !important;
+
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+
+    border: 1px solid #e1e1e1 !important;
+    border-radius: 10px !important;
+
+    overflow: hidden !important;
+
+    box-sizing: border-box !important;
+
+    text-align: center !important;
+
+    height: 100% !important;
+
+    box-shadow: none !important;
+}
+
+
+/* لو القالب يضع البطاقة داخل prod-col */
+html body.mz-category-page .prod-col {
+    text-align: center !important;
+}
+
+
+/* إلغاء الخلفية الوهمية القديمة إن وجدت */
+html body.mz-category-page .prod-col::before {
+    display: none !important;
+    content: none !important;
+}
+
+
+/* =========================================
+   رابط المنتج
+   ========================================= */
+
+html body.mz-category-page .product-item > a {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================================
+   الصورة
+   ========================================= */
+
+html body.mz-category-page
+.product-item
+img[id^="product-card-img-"] {
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 auto !important;
+
+    border-radius: 9px 9px 0 0 !important;
+
+    object-fit: contain !important;
+
+    background: #ffffff !important;
+}
+
+
+/* =========================================
+   توسيط جميع محتويات النص
+   ========================================= */
+
+html body.mz-category-page .product-item h1,
+html body.mz-category-page .product-item h2,
+html body.mz-category-page .product-item h3,
+html body.mz-category-page .product-item h4,
+html body.mz-category-page .product-item h5,
+html body.mz-category-page .product-item h6 {
+
+    width: 100% !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    text-align: center !important;
+}
+
+
+/* النصوص */
+html body.mz-category-page .product-item p {
+    width: 100% !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    text-align: center !important;
+}
+
+
+/* =========================================
+   الحاويات الداخلية
+   ========================================= */
+
+html body.mz-category-page
+.product-item
+.d-flex {
+
+    justify-content: center !important;
+    align-items: center !important;
+
+    text-align: center !important;
+}
+
+
+/* أي محتوى نصي داخل البطاقة */
+html body.mz-category-page
+.product-item
+[class*="content"],
+
+html body.mz-category-page
+.product-item
+[class*="details"],
+
+html body.mz-category-page
+.product-item
+[class*="info"] {
+
+    width: 100% !important;
+
+    text-align: center !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* =========================================
+   اسم المنتج
+   ========================================= */
+
+html body.mz-category-page
+.product-item
+.product-title,
+
+html body.mz-category-page
+.product-item
+[class*="product-name"],
+
+html body.mz-category-page
+.product-item
+[class*="product-title"] {
+
+    width: 100% !important;
+
+    display: block !important;
+
+    text-align: center !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* =========================================
+   السعر
+   ========================================= */
+
+html body.mz-category-page
+.product-item
+[class*="price"] {
+
+    text-align: center !important;
+
+    justify-content: center !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* =========================================
+   span
+   نستثني شارة المنتج
+   ========================================= */
+
+html body.mz-category-page
+.product-item
+span:not(.badge-name-product-card) {
+
+    text-align: center !important;
+}
+
+
+/* =========================================
+   زر أضف إلى السلة
+   نفس عرض البطاقة
+   ========================================= */
+
+html body.mz-category-page
+.product-item
+a.btn.btn-primary.btn-product-card-select-variant {
+
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    text-align: center !important;
+
+    border: 0 !important;
+
+    border-radius: 0 0 9px 9px !important;
+}
+
+/* =========================================
+   إظهار البنر كاملًا بدون قص - الرئيسية فقط
+   ========================================= */
+
+body[data-template="home"] .home > section:first-of-type {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: transparent !important;
+}
+
+body[data-template="home"] .home > section:first-of-type .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+body[data-template="home"] .home > section:first-of-type .swiper,
+body[data-template="home"] .home > section:first-of-type .swiper-wrapper,
+body[data-template="home"] .home > section:first-of-type .swiper-slide {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+}
+
+body[data-template="home"] .home > section:first-of-type picture,
+body[data-template="home"] .home > section:first-of-type a {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+body[data-template="home"] .home > section:first-of-type img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    margin: 0 auto !important;
+}
+
+/* إذا كان البنر معمول كخلفية وليس صورة img */
+body[data-template="home"] .home > section:first-of-type [style*="background"] {
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+
+/* إلغاء أي ارتفاع ثابت قد يسبب القص */
+body[data-template="home"] .home > section:first-of-type *,
+body[data-template="home"] .home > section:first-of-type *::before,
+body[data-template="home"] .home > section:first-of-type *::after {
+    max-height: none !important;
+}
+
+/* لو فيه كلاس يفرض قص على السلايدر */
+body[data-template="home"] .home > section:first-of-type .swiper-slide,
+body[data-template="home"] .home > section:first-of-type .swiper-slide > div {
+    overflow: visible !important;
+}
+html body .dark.d-none.d-lg-block {
+    background: #f9dee6 !important;
+    background-color: #f9dee6 !important;
+}
+
+html body .dark.d-none.d-lg-block a {
+    background: transparent !important;
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+}
+
+html body .dark.d-none.d-lg-block ul,
+html body .dark.d-none.d-lg-block li,
+html body .dark.d-none.d-lg-block nav,
+html body .dark.d-none.d-lg-block .container {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+/* =========================================
+   صندوق آراء العملاء - أبيض إجباري
+   ========================================= */
+
+html body .testimonials-customer-card,
+html body .testimonials-customer-card.bg-transparent {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+
+    opacity: 1 !important;
+}
+
+
+/* فرض الأبيض على العناصر الداخلية أيضًا */
+html body .testimonials-customer-card > div,
+html body .testimonials-customer-card.bg-transparent > div {
+    background-color: #ffffff !important;
+}
+
+
+/* لو slick نفسه يضيف شفافية */
+html body .testimonials-wrapper .slick-slide .testimonials-customer-card {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+html body section.subTitle-detail {
+    background: #ffeef4 !important;
+    background-color: #ffeef4 !important;
+    text-align: center !important;
+}
