@@ -1,0 +1,184 @@
+        const fragment = document.createDocumentFragment();
+
+        WANTED.forEach(function (item) {
+            let link = findSourceLink(source, item.keywords);
+
+            if (link) {
+                /*
+                 * ننقل رابط زد الأصلي نفسه، وليس نسخة منه.
+                 * بهذا نحافظ على سلوك الرابط الأصلي بالكامل.
+                 */
+                link = link;
+            } else {
+                link = document.createElement('a');
+                link.href = item.fallback;
+            }
+
+            link.classList.add('mz-desktop-category-link');
+            link.textContent = item.label;
+            link.style.setProperty('pointer-events', 'auto', 'important');
+            link.style.setProperty('cursor', 'pointer', 'important');
+            link.style.setProperty('position', 'relative', 'important');
+            link.style.setProperty('z-index', '5', 'important');
+
+            fragment.appendChild(link);
+        });
+
+        nav.replaceChildren(fragment);
+        nav.dataset.mzNativeReady = '1';
+        nav.style.setProperty('pointer-events', 'auto', 'important');
+        nav.style.setProperty('z-index', '1000', 'important');
+
+        headerBar.classList.add('mz-desktop-header-bar');
+
+        if (source) {
+            source.classList.add('mz-desktop-categories-source');
+        }
+    }
+
+    function getNativeLoginButton() {
+        const candidates = [
+            document.querySelector('#login-btn'),
+            document.querySelector('.account-btn button'),
+            document.querySelector('button[onclick*="account"]'),
+            document.querySelector('button[aria-label*="تسجيل"]')
+        ];
+
+        return candidates.find(function (element) {
+            return element && !element.dataset.mzSyntheticAccount;
+        }) || null;
+    }
+
+    function prepareNativeLogin(headerBar) {
+        if (!headerBar) return null;
+
+        let loginButton = headerBar.querySelector(
+            '.mz-account-icon-btn[data-mz-native-account="1"]'
+        );
+
+        if (loginButton) return loginButton;
+
+        /* نحذف فقط زر الحساب الصناعي القديم الذي أنشأناه نحن */
+        headerBar
+            .querySelectorAll('.mz-account-icon-btn:not([data-mz-native-account="1"])')
+            .forEach(function (button) {
+                if (button.id !== 'login-btn') button.remove();
+            });
+
+        loginButton = getNativeLoginButton();
+        if (!loginButton) return null;
+
+        /*
+         * ننقل حاوية حساب زد الأصلية إن وجدت، وليس الزر وحده.
+         * هذا يحافظ على أي event delegation داخل .account-btn.
+         */
+        const nativeHost =
+            loginButton.closest('.account-btn') ||
+            loginButton.parentElement ||
+            loginButton;
+
+        if (nativeHost !== headerBar) {
+            headerBar.appendChild(nativeHost);
+        }
+
+        nativeHost.classList.add('mz-native-account-host');
+        nativeHost.style.setProperty('display', 'flex', 'important');
+        nativeHost.style.setProperty('align-items', 'center', 'important');
+        nativeHost.style.setProperty('justify-content', 'center', 'important');
+        nativeHost.style.setProperty('width', '42px', 'important');
+        nativeHost.style.setProperty('height', '42px', 'important');
+        nativeHost.style.setProperty('margin', '0', 'important');
+        nativeHost.style.setProperty('padding', '0', 'important');
+        nativeHost.style.setProperty('background', 'transparent', 'important');
+        nativeHost.style.setProperty('pointer-events', 'auto', 'important');
+        nativeHost.style.setProperty('overflow', 'visible', 'important');
+
+        loginButton.classList.remove('mz-hide-original-login');
+        loginButton.classList.add('mz-account-icon-btn');
+        loginButton.dataset.mzNativeAccount = '1';
+
+        Array.from(loginButton.children).forEach(function (child) {
+            child.style.setProperty('display', 'none', 'important');
+        });
+
+        let icon = loginButton.querySelector('svg.mz-native-account-svg');
+
+        if (!icon) {
+            icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            icon.setAttribute('viewBox', '0 0 24 24');
+            icon.setAttribute('aria-hidden', 'true');
+            icon.classList.add('mz-native-account-svg');
+            icon.innerHTML = '<circle cx="12" cy="7.5" r="4.2"></circle><path d="M4.5 21C4.5 16.8 7.7 14.2 12 14.2C16.3 14.2 19.5 16.8 19.5 21"></path>';
+            loginButton.appendChild(icon);
+        }
+
+        icon.style.setProperty('display', 'block', 'important');
+
+        loginButton.style.setProperty('width', '42px', 'important');
+        loginButton.style.setProperty('height', '42px', 'important');
+        loginButton.style.setProperty('display', 'flex', 'important');
+        loginButton.style.setProperty('align-items', 'center', 'important');
+        loginButton.style.setProperty('justify-content', 'center', 'important');
+        loginButton.style.setProperty('margin', '0', 'important');
+        loginButton.style.setProperty('padding', '0', 'important');
+        loginButton.style.setProperty('background', 'transparent', 'important');
+        loginButton.style.setProperty('border', '0', 'important');
+        loginButton.style.setProperty('box-shadow', 'none', 'important');
+        loginButton.style.setProperty('outline', 'none', 'important');
+        loginButton.style.setProperty('font-size', '0', 'important');
+        loginButton.style.setProperty('color', 'transparent', 'important');
+        loginButton.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
+        loginButton.style.setProperty('pointer-events', 'auto', 'important');
+        loginButton.style.setProperty('cursor', 'pointer', 'important');
+        loginButton.style.setProperty('overflow', 'visible', 'important');
+
+        return loginButton;
+    }
+
+    function hideCountryOnly() {
+        Array.from(document.querySelectorAll('button, a')).forEach(function (element) {
+            if (cleanText(element.textContent) === 'السعودية') {
+                element.classList.add('mz-hide-country-btn');
+            }
+        });
+    }
+
+    function findVisibleElement(root, selectors) {
+        if (!root) return null;
+
+        for (const selector of selectors) {
+            const elements = root.querySelectorAll(selector);
+
+            for (const element of elements) {
+                const rect = element.getBoundingClientRect();
+                const style = getComputedStyle(element);
+
+                if (
+                    rect.width > 4 &&
+                    rect.height > 4 &&
+                    style.display !== 'none' &&
+                    style.visibility !== 'hidden'
+                ) {
+                    return element;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    function getCartClickable(headerBar) {
+        const ref = findVisibleElement(headerBar, [
+            '.sicon-shopping-bag',
+            '.sicon-shopping-cart',
+            '.sicon-cart',
+            '.icon-cart',
+            '.fa-shopping-cart',
+            'a[href*="/cart"]',
+            'a[href*="cart"]',
+            '.header-cart',
+            '.cart-icon'
+        ]);
+
+        if (!ref) return null;
+
