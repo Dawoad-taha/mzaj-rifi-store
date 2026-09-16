@@ -1,0 +1,184 @@
+
+
+                        const separator =
+                            document.createElement(
+                                'div'
+                            );
+
+
+                        separator.className =
+                            'mz-footer-section-separator';
+
+
+                        heading.parentNode.insertBefore(
+                            separator,
+                            heading
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       MAIN
+       ========================================= */
+
+    function buildFooter() {
+
+        const footer =
+            getFooter();
+
+
+        if (!footer) {
+            return;
+        }
+
+
+        removeSeparators(
+            footer
+        );
+
+
+        if (
+            window.innerWidth <= 768
+        ) {
+
+            buildMobileSeparators(
+                footer
+            );
+
+        } else {
+
+            buildDesktopSeparators(
+                footer
+            );
+
+        }
+
+    }
+
+
+    function scheduleBuild() {
+
+        clearTimeout(
+            resizeTimer
+        );
+
+
+        resizeTimer =
+            setTimeout(
+                buildFooter,
+                120
+            );
+
+    }
+
+
+    if (
+        document.readyState ===
+        'loading'
+    ) {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                setTimeout(
+                    buildFooter,
+                    300
+                );
+
+            }
+        );
+
+    } else {
+
+        setTimeout(
+            buildFooter,
+            300
+        );
+
+    }
+
+
+    setTimeout(
+        buildFooter,
+        900
+    );
+
+
+    window.addEventListener(
+        'resize',
+        scheduleBuild
+    );
+
+})();
+/* =========================================================
+   MZAJ RIFI - FOOTER TYPOGRAPHY SCOPED
+   JS يحدد أقسام الفوتر بدقة
+   ========================================================= */
+
+(function () {
+
+    const FOOTER_TITLES = [
+        'من نحن',
+        'روابط مهمة',
+        'موقعنا',
+        'تواصل معنا'
+    ];
+
+
+    function normalizeText(text) {
+        return (text || '')
+            .replace(/\s+/g, ' ')
+            .replace(/[؟?::]/g, '')
+            .trim();
+    }
+
+
+    function getFooter() {
+        return (
+            document.querySelector('.footer-store-section') ||
+            document.querySelector('footer section.footer-theme-bg') ||
+            document.querySelector('footer')
+        );
+    }
+
+
+    function isTargetTitle(element) {
+
+        const text = normalizeText(
+            element.textContent
+        );
+
+        return FOOTER_TITLES.includes(text);
+    }
+
+
+    function getTargetTitles(footer) {
+
+        const all = Array.from(
+            footer.querySelectorAll(
+                'h1,h2,h3,h4,h5,h6,div,span,p'
+            )
+        ).filter(isTargetTitle);
+
+
+        /*
+         لو نفس العنوان موجود داخل div ثم span،
+         نأخذ العنصر الأعمق فقط.
+        */
+        return all.filter(function (element) {
+
+            return !Array.from(element.children)
+                .some(function (child) {
+                    return isTargetTitle(child);
+                });
+
+        });
+    }
