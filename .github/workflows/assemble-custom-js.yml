@@ -1,0 +1,29 @@
+name: Assemble exact custom JS
+
+on:
+  push:
+    paths:
+      - 'tmp-mzaj-upload/chunk-*.part'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble exact source
+        run: cat tmp-mzaj-upload/chunk-*.part > js/custom.js
+      - name: Commit assembled file
+        run: |
+          if git diff --quiet -- js/custom.js; then
+            echo "No change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/custom.js
+          git commit -m "Replace custom JS with exact uploaded source"
+          git push
