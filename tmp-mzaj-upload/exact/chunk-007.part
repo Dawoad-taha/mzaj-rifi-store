@@ -1,0 +1,184 @@
+                );
+
+                cell.style.setProperty(
+                    'flex',
+                    '1 1 0',
+                    'important'
+                );
+
+                cell.style.setProperty(
+                    'width',
+                    '0',
+                    'important'
+                );
+
+                cell.style.setProperty(
+                    'min-width',
+                    '0',
+                    'important'
+                );
+
+                cell.style.setProperty(
+                    'max-width',
+                    'none',
+                    'important'
+                );
+
+                cell.style.setProperty(
+                    'margin',
+                    '0',
+                    'important'
+                );
+
+                cell.style.setProperty(
+                    'padding',
+                    '0',
+                    'important'
+                );
+
+            });
+
+
+        /* الأزرار نفسها */
+        [cartButton, buyButton]
+            .forEach(function (btn) {
+
+                btn.style.setProperty(
+                    'width',
+                    '100%',
+                    'important'
+                );
+
+                btn.style.setProperty(
+                    'max-width',
+                    '100%',
+                    'important'
+                );
+
+                btn.style.setProperty(
+                    'min-width',
+                    '0',
+                    'important'
+                );
+
+            });
+
+    }
+
+
+    fixProductActions();
+
+    setTimeout(fixProductActions, 300);
+    setTimeout(fixProductActions, 700);
+    setTimeout(fixProductActions, 1200);
+    setTimeout(fixProductActions, 2000);
+
+
+    const observer =
+        new MutationObserver(
+            fixProductActions
+        );
+
+
+    observer.observe(
+        document.body,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+})();
+
+/* =========================================================
+   MZAJ RIFI - DESKTOP HEADER NATIVE CLICK VERSION
+   نستخدم روابط زد الأصلية وزر الدخول الأصلي نفسه
+   Laptop/Desktop only
+   ========================================================= */
+
+;(function () {
+
+    const desktopMQ = window.matchMedia('(min-width: 992px)');
+    let timer = null;
+    let observer = null;
+
+    const WANTED = [
+        {
+            label: 'جميع المنتجات',
+            keywords: ['جميع', 'المنتجات'],
+            fallback: 'https://mzajrifi.com/products/'
+        },
+        {
+            label: 'توصيل سريع داخل القصيم',
+            keywords: ['توصيل', 'سريع', 'القصيم'],
+            fallback: 'https://mzajrifi.com/categories/397390/%D8%AA%D8%B3%D9%84%D9%8A%D9%85-%D9%81%D9%88%D8%B1%D9%8A-%D9%8A%D8%A3%D8%AA%D9%8A-%D9%83%D9%85%D8%A7-%D8%A7%D9%84%D8%B5%D9%88%D8%B1%D8%A9'
+        },
+        {
+            label: 'تقديمات الورد والشوكولاتة',
+            keywords: ['تقديمات', 'الورد', 'الشوكولات'],
+            fallback: 'https://mzajrifi.com/categories/391216/%D8%A7%D9%84%D9%88%D8%B1%D8%AF-%D9%88-%D8%A7%D9%84%D8%B4%D9%88%D9%83%D9%88%D9%84%D8%A7%D8%AA%D9%87'
+        },
+        {
+            label: 'فازات و باقات الورد الطبيعي',
+            keywords: ['فازات', 'باقات', 'الورد', 'الطبيعي'],
+            fallback: 'https://mzajrifi.com/categories/395074/bouquetsflowers'
+        },
+        {
+            label: 'جميع التصنيفات',
+            keywords: ['جميع', 'التصنيفات'],
+            fallback: 'https://mzajrifi.com/categories'
+        }
+    ];
+
+    function cleanText(text) {
+        return (text || '')
+            .replace(/\s+/g, ' ')
+            .replace(/ـ/g, '')
+            .trim();
+    }
+
+    function getHeaderBar() {
+        return (
+            document.querySelector('.search-header .search-header-bar') ||
+            document.querySelector('.search-header-bar')
+        );
+    }
+
+    function getCategorySource() {
+        const candidates = Array.from(
+            document.querySelectorAll('.dark.d-none.d-lg-block')
+        );
+
+        return candidates.find(function (element) {
+            return element.querySelectorAll('a[href]').length >= 4;
+        }) || null;
+    }
+
+    function findSourceLink(source, keywords) {
+        if (!source) return null;
+
+        const links = Array.from(source.querySelectorAll('a[href]'));
+
+        return links.find(function (link) {
+            const text = cleanText(link.textContent);
+            return keywords.every(function (word) {
+                return text.includes(word);
+            });
+        }) || null;
+    }
+
+    function ensureDesktopCategories(headerBar) {
+        if (!headerBar) return;
+
+        let nav = headerBar.querySelector('.mz-desktop-categories-inline');
+
+        if (!nav) {
+            nav = document.createElement('nav');
+            nav.className = 'mz-desktop-categories-inline';
+            nav.setAttribute('aria-label', 'أقسام المتجر');
+            headerBar.appendChild(nav);
+        }
+
+        if (nav.dataset.mzNativeReady === '1') return;
+
+        const source = getCategorySource();
