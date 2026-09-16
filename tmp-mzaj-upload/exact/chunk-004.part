@@ -1,0 +1,192 @@
+        });
+
+        function stopAuto() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        function startAuto() {
+            stopAuto();
+            timer = setInterval(nextSlide, 2400);
+        }
+
+        /*
+         * مهم: في اللابتوب لا نستخدم Pointer Capture نهائياً.
+         * هذا يترك روابط الصور تعمل كرابط HTML طبيعي 100%.
+         * السحب يبقى فقط للشاشات الأصغر من 992px.
+         */
+        function dragStart(e) {
+            if (window.innerWidth >= 992) return;
+
+            dragging = true;
+            moved = false;
+            stopAuto();
+            startX = e.clientX;
+            currentX = e.clientX;
+            startTranslate = translateFor(index);
+            track.style.transition = 'none';
+            viewport.classList.add('is-dragging');
+        }
+
+        function dragMove(e) {
+            if (!dragging || window.innerWidth >= 992) return;
+
+            currentX = e.clientX;
+            const diff = currentX - startX;
+            if (Math.abs(diff) > 8) moved = true;
+
+            track.style.transform =
+                'translate3d(' + (startTranslate + diff) + 'px,0,0)';
+        }
+
+        function dragEnd() {
+            if (!dragging) return;
+
+            dragging = false;
+            viewport.classList.remove('is-dragging');
+
+            const diff = currentX - startX;
+            const threshold = Math.min(70, getStep() * 0.22);
+
+            if (diff < -threshold) {
+                nextSlide();
+            } else if (diff > threshold) {
+                previousSlide();
+            } else {
+                goToCurrent(true);
+            }
+
+            setTimeout(startAuto, 650);
+        }
+
+        viewport.addEventListener('pointerdown', dragStart);
+        viewport.addEventListener('pointermove', dragMove);
+        viewport.addEventListener('pointerup', dragEnd);
+        viewport.addEventListener('pointercancel', dragEnd);
+
+        track.addEventListener(
+            'click',
+            function (event) {
+                if (moved) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    moved = false;
+                }
+            },
+            true
+        );
+
+        pagination.addEventListener('click', function (event) {
+            const dot = event.target.closest('.mzfinal-dot');
+            if (!dot) return;
+
+            stopAuto();
+            index = Number(dot.dataset.index);
+            goToCurrent(true);
+            updateDots();
+            setTimeout(startAuto, 800);
+        });
+
+        if (typeof ResizeObserver !== 'undefined') {
+            const resizeObserver = new ResizeObserver(resizeCards);
+            resizeObserver.observe(viewport);
+        }
+
+        window.addEventListener('resize', resizeCards);
+
+        requestAnimationFrame(function () {
+            resizeCards();
+            index = 0;
+            goToCurrent(false);
+            updateDots();
+            startAuto();
+        });
+
+        setTimeout(resizeCards, 250);
+        setTimeout(resizeCards, 700);
+        setTimeout(resizeCards, 1400);
+    }
+
+    function start() {
+        if (!isMzHomePage()) {
+            removeMzCategorySlider();
+            return;
+        }
+
+        setTimeout(function () {
+            if (!isMzHomePage()) {
+                removeMzCategorySlider();
+                return;
+            }
+            buildSlider();
+        }, 700);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+    } else {
+        start();
+    }
+
+    window.addEventListener('pageshow', function () {
+        if (!isMzHomePage()) removeMzCategorySlider();
+    });
+
+    window.addEventListener('popstate', function () {
+        if (!isMzHomePage()) removeMzCategorySlider();
+    });
+
+})();
+/* =========================================================
+   MZAJ RIFI - آراء العملاء
+   ========================================================= */
+
+;(function () {
+
+    function normalizeText(text) {
+        return (text || '')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function findTestimonialsTitle() {
+
+        const titles = document.querySelectorAll('h1, h2, h3');
+
+        for (const title of titles) {
+            const text = normalizeText(title.textContent);
+
+            if (
+                text === 'آراء العملاء' ||
+                text === 'اراء العملاء'
+            ) {
+                return title;
+            }
+        }
+
+        return null;
+    }
+
+    function applyTestimonialsStyle() {
+
+        const title = findTestimonialsTitle();
+
+        if (!title) {
+            return false;
+        }
+
+        if (title.dataset.mzTestimonialsReady === '1') {
+            return true;
+        }
+
+        title.dataset.mzTestimonialsReady = '1';
+
+        title.style.setProperty('position', 'relative', 'important');
+        title.style.setProperty('display', 'flex', 'important');
+        title.style.setProperty('align-items', 'center', 'important');
+        title.style.setProperty('justify-content', 'center', 'important');
+        title.style.setProperty('width', '100%', 'important');
+        title.style.setProperty('max-width', '100%', 'important');
+        title.style.setProperty('box-sizing', 'border-box', 'important');
