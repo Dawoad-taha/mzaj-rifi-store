@@ -3,7 +3,7 @@ name: Assemble exact custom CSS
 on:
   push:
     paths:
-      - 'tmp-mzaj-upload/css-exact/chunk-009.part'
+      - 'tmp-mzaj-upload/css-exact/final-trigger.txt'
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Assemble exact CSS source
-        run: cat tmp-mzaj-upload/css-exact/chunk-*.part | base64 -d > css/custom.css
+        run: |
+          {
+            cat tmp-mzaj-upload/css-exact/chunk-001.part
+            cat tmp-mzaj-upload/css-exact/chunk-002.part
+            cat tmp-mzaj-upload/css-exact/chunk-003.part
+            cat tmp-mzaj-upload/css-exact/chunk-004.part
+            cat tmp-mzaj-upload/css-exact/chunk-005.part
+            cat tmp-mzaj-upload/css-exact/corr-006-*.part
+            cat tmp-mzaj-upload/css-exact/chunk-007.part
+            cat tmp-mzaj-upload/css-exact/chunk-008.part
+            cat tmp-mzaj-upload/css-exact/corr-009-*.part
+          } | base64 -d > css/custom.css
       - name: Commit assembled CSS
         run: |
           if git diff --quiet -- css/custom.css; then
