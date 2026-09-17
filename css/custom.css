@@ -1,7 +1,3456 @@
-/* MZAJ RIFI - PUBLIC CSS BUNDLE v1.0.0 */
-@import url("https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/css/parts/part-1.css?v=1.0.0");
-@import url("https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/css/parts/part-2.css?v=1.0.0");
-@import url("https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/css/parts/part-3.css?v=1.0.0");
-@import url("https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/css/parts/part-4.css?v=1.0.0");
-@import url("https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/css/parts/part-5.css?v=1.0.0");
-@import url("https://cdn.jsdelivr.net/gh/Dawoad-taha/mzaj-rifi-store@main/css/parts/part-6.css?v=1.0.0");
+/* =========================================================
+MZAJ RIFI - CUSTOM STYLE
+النسخة المرتبة النهائية
+========================================================= */
+
+/* =========================================================
+
+CENTER LOGO - MOBILE
+========================================================= */
+
+@media (max-width: 991.98px) {
+
+.search-header .search-header-bar.mz-header-bar {
+    position: relative !important;
+}
+
+/* لا نحرك الحاوية لأنها تحتوي زر القائمة */
+.search-header .header-logo {
+    position: static !important;
+    transform: none !important;
+}
+
+/* توسيط رابط الشعار فقط */
+.search-header .mz-centered-logo {
+    position: absolute !important;
+
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    width: 80px !important;
+    height: 64px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    z-index: 5 !important;
+}
+
+/* شعار الموبايل */
+.search-header
+.mz-centered-logo
+img.image-logo.d-block.d-lg-none {
+
+    width: 80px !important;
+    height: auto !important;
+
+    max-width: 80px !important;
+    max-height: 58px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    object-fit: contain !important;
+}
+
+}
+
+/* =========================================================
+2) خلفية المتجر العامة
+========================================================= */
+
+body,
+.app,
+.main,
+.app-content {
+background-color: #fffaf8 !important;
+}
+
+.home-products-section {
+background-color: #fffaf8 !important;
+}
+
+/* =========================================================
+3) بطاقة المنتج
+أبيض + بوردر رمادي + Rounded
+========================================================= */
+
+.home-products-section .prod-col {
+position: relative !important;
+text-align: center !important;
+}
+
+/* خلفية وبوردر البطاقة */
+.home-products-section .prod-col::before {
+content: "";
+
+position: absolute !important;
+
+top: 0 !important;
+bottom: 0 !important;
+
+right: 15px !important;
+left: 15px !important;
+
+background: #ffffff !important;
+
+border: 1px solid #e1e1e1 !important;
+border-radius: 10px !important;
+
+z-index: 0 !important;
+pointer-events: none !important;
+
+}
+
+/* إبقاء محتويات البطاقة فوق الخلفية */
+.home-products-section .prod-col > * {
+position: relative !important;
+z-index: 1 !important;
+}
+
+/* =========================================================
+4) توسيط محتوى بطاقة المنتج
+========================================================= */
+
+.home-products-section .prod-col > div,
+.home-products-section .prod-col > a {
+text-align: center !important;
+}
+
+/* اسم المنتج */
+.home-products-section .prod-col h2,
+.home-products-section .prod-col h3,
+.home-products-section .prod-col h4,
+.home-products-section .prod-col h5 {
+width: 100% !important;
+
+text-align: center !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+/* النصوص والأسعار */
+.home-products-section .prod-col p,
+.home-products-section .prod-col span {
+text-align: center !important;
+}
+
+/* عناصر Flex داخل البطاقة */
+.home-products-section .prod-col .d-flex {
+justify-content: center !important;
+text-align: center !important;
+}
+
+/* =========================================================
+5) صورة المنتج
+Rounded من الأعلى
+========================================================= */
+
+img[id^="product-card-img-"] {
+display: block !important;
+
+width: 100% !important;
+
+border-radius: 10px 10px 0 0 !important;
+
+object-fit: contain !important;
+
+}
+
+/* البطاقة والصورة تحترمان الـRounded */
+.product-item {
+position: relative !important;
+border-radius: 10px !important;
+overflow: hidden !important;
+}
+
+/* =========================================================
+6) زر أضف إلى السلة
+========================================================= */
+
+html body a.btn.btn-primary.btn-product-card-select-variant {
+
+width: 100% !important;
+min-width: 100% !important;
+max-width: 100% !important;
+
+align-self: stretch !important;
+
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+
+margin-left: 0 !important;
+margin-right: 0 !important;
+
+min-height: 36px !important;
+
+padding: 7px 4px !important;
+
+/* النص */
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+text-align: center !important;
+font-weight: 600 !important;
+
+/* اللون الأساسي */
+background-color: #601f49 !important;
+
+/* Gradient متحرك */
+background-image: linear-gradient(
+    110deg,
+    #601f49 0%,
+    #7d285e 30%,
+    #a64c82 50%,
+    #7d285e 70%,
+    #601f49 100%
+) !important;
+
+background-size: 300% 100% !important;
+
+border: 0 !important;
+border-color: transparent !important;
+
+border-radius: 0 0 9px 9px !important;
+
+animation: mz-cart-gradient 4s ease-in-out infinite !important;
+
+box-shadow: none !important;
+
+}
+
+/* Animation */
+@keyframes mz-cart-gradient {
+
+0% {
+    background-position: 0% 50%;
+}
+
+50% {
+    background-position: 100% 50%;
+}
+
+100% {
+    background-position: 0% 50%;
+}
+
+}
+
+/* Hover */
+html body a.btn.btn-primary.btn-product-card-select-variant,
+html body a.btn.btn-primary.btn-product-card-select-variant {
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+background-image: linear-gradient(
+    110deg,
+    #4d1539 0%,
+    #7b275c 35%,
+    #b3568e 50%,
+    #7b275c 65%,
+    #4d1539 100%
+) !important;
+
+border: 0 !important;
+
+box-shadow:
+    0 4px 12px rgba(96, 31, 73, 0.20) !important;
+
+}
+
+/* =========================================================
+7) تجهيز مكان الشارة
+========================================================= */
+
+.product-item,
+.prod-col,
+.mz-product-image-box {
+position: relative !important;
+}
+
+/* =========================================================
+8) شارة المنتج النهائية
+أبيض شفاف + Glass + خط توتي
+========================================================= */
+
+html body .product-item .badge-name-product-card,
+html body .prod-col .badge-name-product-card,
+html body .mz-product-image-box .badge-name-product-card {
+
+/* أعلى الصورة */
+position: absolute !important;
+
+top: 0 !important;
+
+right: 0 !important;
+left: 0 !important;
+
+bottom: auto !important;
+
+/* العرض الكامل */
+width: 100% !important;
+
+min-width: 100% !important;
+max-width: 100% !important;
+
+box-sizing: border-box !important;
+
+margin: 0 !important;
+
+padding: 6px 8px !important;
+
+/* توسيط النص */
+display: flex !important;
+
+align-items: center !important;
+justify-content: center !important;
+
+/* أبيض شفاف */
+background: rgba(255, 255, 255, 0.72) !important;
+background-color: rgba(255, 255, 255, 0.72) !important;
+
+background-image: none !important;
+
+/* Glass Effect */
+backdrop-filter: blur(7px) !important;
+-webkit-backdrop-filter: blur(7px) !important;
+
+/* الخط التوتي */
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+font-size: 10px !important;
+
+font-weight: 700 !important;
+
+line-height: 1.3 !important;
+
+text-align: center !important;
+
+white-space: nowrap !important;
+
+overflow: hidden !important;
+text-overflow: ellipsis !important;
+
+/* بوردر خفيف */
+border: 1px solid rgba(111, 31, 73, 0.12) !important;
+
+border-bottom:
+    1px solid rgba(111, 31, 73, 0.08) !important;
+
+/* Rounded مثل أعلى البطاقة */
+border-radius: 10px 10px 0 0 !important;
+
+/* ظل خفيف */
+box-shadow:
+    0 3px 10px rgba(111, 31, 73, 0.08) !important;
+
+z-index: 50 !important;
+
+transform: none !important;
+
+}
+
+/* =========================================================
+9) إلغاء القلب والمربع الخاص به
+========================================================= */
+
+.product-item [class*="wishlist"],
+.product-item [class*="favorite"],
+.product-item [aria-label*="wishlist"],
+.product-item [aria-label*="Wishlist"],
+.product-item [aria-label*="المفضلة"],
+.product-item [aria-label*="مفضلة"],
+
+.prod-col [class*="wishlist"],
+.prod-col [class*="favorite"],
+.prod-col [aria-label*="wishlist"],
+.prod-col [aria-label*="Wishlist"],
+.prod-col [aria-label*="المفضلة"],
+.prod-col [aria-label*="مفضلة"] {
+
+display: none !important;
+
+}
+/* =========================================================
+عناوين الأقسام
+نص ثابت + Gradient متحرك + خط وردي متحرك
+========================================================= */
+
+.home-products-section .section-title.theme-title-primary {
+
+position: relative !important;
+
+width: 100% !important;
+display: block !important;
+
+margin: 0 auto 28px !important;
+padding: 0 15px 14px !important;
+
+text-align: center !important;
+
+font-size: 24px !important;
+font-weight: 700 !important;
+line-height: 1.5 !important;
+
+/* Gradient متحرك داخل النص */
+background-image: linear-gradient(
+    110deg,
+    #601f49 0%,
+    #8b376c 25%,
+    #e99fbc 50%,
+    #8b376c 75%,
+    #601f49 100%
+) !important;
+
+background-size: 300% 100% !important;
+
+-webkit-background-clip: text !important;
+background-clip: text !important;
+
+color: transparent !important;
+-webkit-text-fill-color: transparent !important;
+
+/* الكلام ثابت - فقط اللون يتحرك */
+animation: mz-title-color 4s ease-in-out infinite !important;
+
+}
+
+/* =========================================================
+الخط الوردي المتحرك
+========================================================= */
+
+.home-products-section .section-title.theme-title-primary::after {
+
+content: "" !important;
+
+position: absolute !important;
+
+bottom: 0 !important;
+left: 50% !important;
+
+width: 95px !important;
+height: 4px !important;
+
+transform: translateX(-50%) !important;
+
+border-radius: 50px !important;
+
+background-image: linear-gradient(
+    90deg,
+    #f2c5d5 0%,
+    #e99fbc 25%,
+    #601f49 50%,
+    #e99fbc 75%,
+    #f2c5d5 100%
+) !important;
+
+background-size: 300% 100% !important;
+
+animation: mz-title-line 3s linear infinite !important;
+
+}
+
+/* =========================================================
+حركة ألوان النص
+========================================================= */
+
+@keyframes mz-title-color {
+
+0% {
+    background-position: 0% 50%;
+}
+
+50% {
+    background-position: 100% 50%;
+}
+
+100% {
+    background-position: 0% 50%;
+}
+
+}
+
+/* =========================================================
+حركة الخط
+========================================================= */
+
+@keyframes mz-title-line {
+
+0% {
+    background-position: 0% 50%;
+}
+
+100% {
+    background-position: 300% 50%;
+}
+
+}
+
+/* =========================================================
+تحسين الموبايل
+========================================================= */
+
+@media (max-width: 768px) {
+
+.home-products-section .section-title.theme-title-primary {
+
+    font-size: 22px !important;
+
+    margin-bottom: 24px !important;
+
+    padding-bottom: 12px !important;
+}
+
+.home-products-section .section-title.theme-title-primary::after {
+
+    width: 85px !important;
+    height: 3px !important;
+}
+
+}
+/* =========================================================
+MZAJ RIFI - LOADING SCREEN
+========================================================= */
+
+#mz-store-loader {
+position: fixed !important;
+
+inset: 0 !important;
+
+width: 100% !important;
+height: 100% !important;
+
+background: #f4dce8 !important;
+
+display: flex !important;
+flex-direction: column !important;
+
+align-items: center !important;
+justify-content: center !important;
+
+z-index: 999999999 !important;
+
+opacity: 1;
+
+visibility: visible;
+
+transition:
+    opacity 0.55s ease,
+    visibility 0.55s ease !important;
+
+}
+
+/* عند انتهاء التحميل */
+#mz-store-loader.mz-loader-hide {
+opacity: 0 !important;
+visibility: hidden !important;
+
+pointer-events: none !important;
+
+}
+
+/* =========================================================
+الشعار
+========================================================= */
+
+#mz-store-loader .mz-loader-logo {
+width: 115px !important;
+height: auto !important;
+
+max-height: 115px !important;
+
+object-fit: contain !important;
+
+/* مهم: بدون أي فلتر حتى يبقى اللون الأصلي */
+filter: none !important;
+
+animation:
+    mzLogoLoading 1.8s ease-in-out infinite !important;
+
+}
+
+/* حركة الشعار */
+@keyframes mzLogoLoading {
+
+0%,
+100% {
+    transform: scale(1);
+    opacity: 1;
+}
+
+50% {
+    transform: scale(1.07);
+    opacity: 0.82;
+}
+
+}
+
+/* =========================================================
+خط التحميل
+========================================================= */
+
+#mz-store-loader .mz-loader-line {
+position: relative !important;
+
+width: 110px !important;
+height: 3px !important;
+
+margin-top: 24px !important;
+
+background: rgba(111, 31, 73, 0.13) !important;
+
+border-radius: 50px !important;
+
+overflow: hidden !important;
+
+}
+
+/* اللون المتحرك داخل الخط */
+#mz-store-loader .mz-loader-line::before {
+content: "" !important;
+
+position: absolute !important;
+
+top: 0 !important;
+left: -55% !important;
+
+width: 55% !important;
+height: 100% !important;
+
+background: linear-gradient(
+    90deg,
+    transparent,
+    #6f1f49,
+    #b85389,
+    transparent
+) !important;
+
+border-radius: 50px !important;
+
+animation:
+    mzLoadingLine 1.25s ease-in-out infinite !important;
+
+}
+
+@keyframes mzLoadingLine {
+
+0% {
+    left: -55%;
+}
+
+100% {
+    left: 110%;
+}
+
+}
+
+/* الموبايل */
+@media (max-width: 768px) {
+
+#mz-store-loader .mz-loader-logo {
+    width: 95px !important;
+    max-height: 95px !important;
+}
+
+#mz-store-loader .mz-loader-line {
+    width: 95px !important;
+    margin-top: 20px !important;
+}
+
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+
+#mz-store-loader .mz-loader-logo,
+#mz-store-loader .mz-loader-line::before {
+    animation: none !important;
+}
+
+}
+/* =========================================================
+نصوص شاشة اللودينج
+========================================================= */
+
+#mz-store-loader .mz-loader-text {
+margin-top: 16px !important;
+text-align: center !important;
+}
+
+#mz-store-loader .mz-loader-brand {
+margin: 0 !important;
+
+color: #6f1f49 !important;
+
+font-size: 22px !important;
+font-weight: 700 !important;
+line-height: 1.4 !important;
+
+}
+
+#mz-store-loader .mz-loader-tagline {
+margin: 5px 0 0 !important;
+
+color: #6f1f49 !important;
+
+font-size: 13px !important;
+font-weight: 500 !important;
+line-height: 1.6 !important;
+
+opacity: 0.85 !important;
+
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+
+#mz-store-loader .mz-loader-brand {
+    font-size: 20px !important;
+}
+
+#mz-store-loader .mz-loader-tagline {
+    font-size: 12px !important;
+}
+
+}
+/* =========================================================
+MZAJ RIFI - SIDE MENU FINAL - FIXED
+========================================================= */
+
+/* خلفية القائمة */
+.mz-rifi-side-menu,
+.mz-rifi-side-menu > ul,
+.mz-rifi-side-menu ul,
+.mz-rifi-side-menu li {
+background: #efd7e7 !important;
+background-color: #efd7e7 !important;
+}
+
+/* إزالة أي مسافات افتراضية من القوائم */
+.mz-rifi-side-menu ul {
+margin: 0 !important;
+padding: 0 !important;
+}
+
+/* =========================================
+رأس القائمة - نفس محاذاة الأقسام
+========================================= */
+html body .mz-rifi-side-menu .mz-menu-main-title {
+position: relative !important;
+
+width: 100% !important;
+min-height: 56px !important;
+
+display: flex !important;
+align-items: center !important;
+justify-content: flex-start !important;
+
+direction: rtl !important;
+
+/* نفس بداية روابط الأقسام من اليمين + مساحة لزر X من اليسار */
+padding: 0 20px 0 58px !important;
+margin: 0 !important;
+
+box-sizing: border-box !important;
+
+text-align: right !important;
+
+background: #6f1f49 !important;
+background-color: #6f1f49 !important;
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+font-size: 16px !important;
+font-weight: 700 !important;
+line-height: 1.5 !important;
+
+border: 0 !important;
+
+z-index: 100 !important;
+
+}
+
+/* نص "القائمة الرئيسية" */
+html body .mz-rifi-side-menu .mz-menu-main-title > span {
+display: block !important;
+
+flex: 1 1 auto !important;
+width: auto !important;
+
+margin: 0 !important;
+padding: 0 !important;
+
+direction: rtl !important;
+text-align: right !important;
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+font-size: 16px !important;
+font-weight: 700 !important;
+line-height: 1.5 !important;
+
+}
+
+/* =========================================
+روابط القائمة
+========================================= */
+html body .mz-rifi-side-menu li > a,
+html body .mz-rifi-side-menu .menu-link {
+display: block !important;
+
+width: 100% !important;
+
+margin: 0 !important;
+padding: 15px 20px !important;
+
+box-sizing: border-box !important;
+
+direction: rtl !important;
+text-align: right !important;
+
+background: transparent !important;
+background-color: transparent !important;
+
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+text-decoration: none !important;
+
+transition: background-color 0.25s ease !important;
+
+}
+
+/* فواصل خفيفة */
+.mz-rifi-side-menu li {
+border-bottom: 1px solid rgba(111, 31, 73, 0.06) !important;
+}
+
+/* Hover */
+.mz-rifi-side-menu li > a,
+.mz-rifi-side-menu .menu-link {
+background: rgba(111, 31, 73, 0.06) !important;
+}
+
+/* =========================================
+زر إغلاق القائمة
+========================================= */
+html body .mz-rifi-side-menu .mz-menu-main-title .mz-menu-close-btn {
+position: absolute !important;
+
+left: 12px !important;
+right: auto !important;
+top: 50% !important;
+
+transform: translateY(-50%) !important;
+
+width: 34px !important;
+height: 34px !important;
+
+padding: 0 !important;
+margin: 0 !important;
+
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+
+background: rgba(255, 255, 255, 0.14) !important;
+
+border: 1px solid rgba(255, 255, 255, 0.28) !important;
+border-radius: 50% !important;
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+font-family: Arial, sans-serif !important;
+font-size: 25px !important;
+font-weight: 300 !important;
+line-height: 1 !important;
+
+cursor: pointer !important;
+
+appearance: none !important;
+-webkit-appearance: none !important;
+
+z-index: 99999 !important;
+
+opacity: 1 !important;
+visibility: visible !important;
+
+transition:
+    background 0.25s ease,
+    transform 0.25s ease !important;
+
+}
+
+/* حركة زر الإغلاق */
+html body .mz-rifi-side-menu .mz-menu-main-title .mz-menu-close-btn {
+background: rgba(255, 255, 255, 0.25) !important;
+
+transform:
+    translateY(-50%)
+    rotate(90deg) !important;
+
+}
+
+/* =========================================================
+CENTER FOOTER CONTENT
+========================================================= */
+
+.footer-store-section {
+text-align: center !important;
+}
+
+/* الحاويات داخل الفوتر /
+.footer-store-section > div,
+.footer-store-section .container,
+.footer-store-section .row,
+.footer-store-section [class="col-"] {
+text-align: center !important;
+}
+
+/* العناوين */
+.footer-store-section h1,
+.footer-store-section h2,
+.footer-store-section h3,
+.footer-store-section h4,
+.footer-store-section h5,
+.footer-store-section h6 {
+width: 100% !important;
+
+text-align: center !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+/* النصوص */
+.footer-store-section p {
+width: 100% !important;
+
+text-align: center !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+/* الروابط */
+.footer-store-section a {
+text-align: center !important;
+}
+
+/* القوائم */
+.footer-store-section ul {
+width: 100% !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+padding-left: 0 !important;
+padding-right: 0 !important;
+
+text-align: center !important;
+
+}
+
+.footer-store-section li {
+width: 100% !important;
+
+text-align: center !important;
+
+}
+
+/* أي Flex داخل الفوتر */
+.footer-store-section .d-flex {
+justify-content: center !important;
+align-items: center !important;
+}
+
+/* =========================================================
+أيقونات التواصل
+========================================================= */
+
+.footer-store-section .social-icons,
+.footer-store-section [class*="social"] {
+width: 100% !important;
+
+display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+
+flex-wrap: wrap !important;
+
+gap: 8px !important;
+
+text-align: center !important;
+
+}
+
+/* =========================================================
+أقسام الشركات وحقوق المتجر
+========================================================= */
+
+.footer-companies,
+.footer-copyrights-vat-certificate {
+text-align: center !important;
+}
+
+.footer-companies > *,
+.footer-copyrights-vat-certificate > * {
+margin-left: auto !important;
+margin-right: auto !important;
+
+text-align: center !important;
+
+}
+
+/* =========================================================
+Mobile
+========================================================= */
+
+@media (max-width: 768px) {
+
+.footer-store-section {
+    text-align: center !important;
+}
+
+.footer-store-section [class*="col-"] {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+}
+
+}
+
+/* =========================================================
+MZAJ RIFI - CATEGORY SLIDER - CLEAN FINAL
+بدون تكرار / 4 كروت لابتوب / 2 موبايل / بدون بوردر أبيض
+========================================================= */
+
+#mz-category-slider-final {
+width: 100% !important;
+max-width: 100% !important;
+margin: 0 !important;
+padding: 20px 0 24px !important;
+background: transparent !important;
+overflow: hidden !important;
+box-sizing: border-box !important;
+direction: ltr !important;
+}
+
+#mz-category-slider-final .mzfinal-title {
+position: relative !important;
+display: block !important;
+width: 100% !important;
+margin: 0 auto 18px !important;
+padding: 0 15px 11px !important;
+box-sizing: border-box !important;
+direction: rtl !important;
+text-align: center !important;
+font-size: 22px !important;
+font-weight: 700 !important;
+line-height: 1.5 !important;
+
+background-image: linear-gradient(
+    110deg,
+    #601f49 0%,
+    #8b376c 25%,
+    #e99fbc 50%,
+    #8b376c 75%,
+    #601f49 100%
+) !important;
+background-size: 300% 100% !important;
+
+-webkit-background-clip: text !important;
+background-clip: text !important;
+color: transparent !important;
+-webkit-text-fill-color: transparent !important;
+
+animation: mzfinal-title-color 4s ease-in-out infinite !important;
+
+}
+
+#mz-category-slider-final .mzfinal-title::after {
+content: "" !important;
+position: absolute !important;
+left: 50% !important;
+bottom: 0 !important;
+width: 95px !important;
+height: 3px !important;
+transform: translateX(-50%) !important;
+border-radius: 50px !important;
+
+background-image: linear-gradient(
+    90deg,
+    #f2c5d5,
+    #e99fbc,
+    #601f49,
+    #e99fbc,
+    #f2c5d5
+) !important;
+background-size: 300% 100% !important;
+
+animation: mzfinal-title-line 3s linear infinite !important;
+
+}
+
+@keyframes mzfinal-title-color {
+0%   { background-position: 0% 50%; }
+50%  { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+
+@keyframes mzfinal-title-line {
+0%   { background-position: 0% 50%; }
+100% { background-position: 300% 50%; }
+}
+
+#mz-category-slider-final .mzfinal-viewport {
+position: relative !important;
+display: block !important;
+width: 100% !important;
+max-width: 100% !important;
+margin: 0 !important;
+padding: 0 10px !important;
+box-sizing: border-box !important;
+overflow: hidden !important;
+direction: ltr !important;
+cursor: grab !important;
+touch-action: pan-y !important;
+user-select: none !important;
+-webkit-user-select: none !important;
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+}
+
+#mz-category-slider-final .mzfinal-viewport.is-dragging {
+cursor: grabbing !important;
+}
+
+#mz-category-slider-final .mzfinal-track {
+position: relative !important;
+display: flex !important;
+flex-direction: row !important;
+flex-wrap: nowrap !important;
+align-items: stretch !important;
+justify-content: flex-start !important;
+width: max-content !important;
+max-width: none !important;
+gap: 16px !important;
+margin: 0 !important;
+padding: 0 !important;
+left: 0 !important;
+right: auto !important;
+direction: ltr !important;
+transform: translate3d(0, 0, 0);
+transform-origin: left center !important;
+transition: transform 0.45s ease !important;
+will-change: transform !important;
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+}
+
+#mz-category-slider-final .mzfinal-card {
+position: relative !important;
+display: flex !important;
+flex-direction: column !important;
+align-items: center !important;
+justify-content: flex-start !important;
+flex-grow: 0 !important;
+flex-shrink: 0 !important;
+margin: 0 !important;
+padding: 0 !important;
+box-sizing: border-box !important;
+overflow: visible !important;
+background: transparent !important;
+background-color: transparent !important;
+border: 0 !important;
+outline: 0 !important;
+box-shadow: none !important;
+border-radius: 0 !important;
+text-decoration: none !important;
+text-align: center !important;
+direction: rtl !important;
+cursor: pointer !important;
+}
+
+#mz-category-slider-final .mzfinal-card::before,
+#mz-category-slider-final .mzfinal-card::after {
+display: none !important;
+content: none !important;
+}
+
+#mz-category-slider-final .mzfinal-card img {
+display: block !important;
+position: static !important;
+width: 100% !important;
+height: auto !important;
+max-width: 100% !important;
+aspect-ratio: 1 / 1 !important;
+object-fit: cover !important;
+object-position: center !important;
+margin: 0 !important;
+padding: 0 !important;
+background: transparent !important;
+border: 0 !important;
+outline: 0 !important;
+box-shadow: none !important;
+border-radius: 0 !important;
+opacity: 1 !important;
+visibility: visible !important;
+transform: scale(1) !important;
+transition: transform 0.45s cubic-bezier(.2,.7,.2,1) !important;
+pointer-events: none !important;
+user-select: none !important;
+-webkit-user-drag: none !important;
+}
+
+#mz-category-slider-final .mzfinal-card,
+#mz-category-slider-final .mzfinal-card {
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+outline: 0 !important;
+}
+
+#mz-category-slider-final .mzfinal-card img {
+transform: scale(1.055) !important;
+}
+
+#mz-category-slider-final .mzfinal-card-disabled {
+cursor: grab !important;
+}
+
+#mz-category-slider-final .mzfinal-image-wrap {
+width: 100% !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+margin-bottom: 12px !important;
+}
+
+#mz-category-slider-final .mzfinal-image {
+width: 150px !important;
+height: 150px !important;
+max-width: 100% !important;
+object-fit: contain !important;
+display: block !important;
+margin: 0 auto !important;
+border: 0 !important;
+box-shadow: none !important;
+background: transparent !important;
+}
+
+#mz-category-slider-final .mzfinal-label {
+width: 100% !important;
+margin: 0 !important;
+color: #601f49 !important;
+font-size: 18px !important;
+font-weight: 700 !important;
+line-height: 1.5 !important;
+text-align: center !important;
+white-space: normal !important;
+overflow: hidden !important;
+display: -webkit-box !important;
+-webkit-line-clamp: 2 !important;
+-webkit-box-orient: vertical !important;
+min-height: 54px !important;
+}
+
+#mz-category-slider-final .mzfinal-pagination {
+width: 100% !important;
+margin: 16px 0 0 !important;
+padding: 0 !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+gap: 8px !important;
+direction: ltr !important;
+}
+
+#mz-category-slider-final .mzfinal-dot {
+width: 8px !important;
+min-width: 8px !important;
+height: 8px !important;
+padding: 0 !important;
+margin: 0 !important;
+border: 0 !important;
+outline: 0 !important;
+border-radius: 50px !important;
+background: #d8c3cf !important;
+box-shadow: none !important;
+appearance: none !important;
+-webkit-appearance: none !important;
+cursor: pointer !important;
+transition: width .3s ease, background .3s ease !important;
+}
+
+#mz-category-slider-final .mzfinal-dot.active {
+width: 24px !important;
+min-width: 24px !important;
+border-radius: 999px !important;
+background: #7b285c !important;
+}
+
+/* Desktop / Laptop */
+@media (min-width: 992px) {
+#mz-category-slider-final .mzfinal-card {
+flex: 0 0 calc((100% - 48px) / 4) !important;
+width: calc((100% - 48px) / 4) !important;
+max-width: calc((100% - 48px) / 4) !important;
+}
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+#mz-category-slider-final .mzfinal-card {
+flex: 0 0 calc((100% - 16px) / 2) !important;
+width: calc((100% - 16px) / 2) !important;
+max-width: calc((100% - 16px) / 2) !important;
+}
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+#mz-category-slider-final {
+padding: 16px 0 22px !important;
+}
+
+#mz-category-slider-final .mzfinal-title {
+    margin-bottom: 14px !important;
+    font-size: 22px !important;
+}
+
+#mz-category-slider-final .mzfinal-title::after {
+    width: 85px !important;
+}
+
+#mz-category-slider-final .mzfinal-viewport {
+    padding: 0 8px !important;
+}
+
+#mz-category-slider-final .mzfinal-track {
+    gap: 12px !important;
+}
+
+#mz-category-slider-final .mzfinal-card {
+    flex: 0 0 calc((100% - 12px) / 2) !important;
+    width: calc((100% - 12px) / 2) !important;
+    max-width: calc((100% - 12px) / 2) !important;
+}
+
+#mz-category-slider-final .mzfinal-image {
+    width: 110px !important;
+    height: 110px !important;
+}
+
+#mz-category-slider-final .mzfinal-label {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+    min-height: 42px !important;
+}
+
+}
+
+/* =========================================================
+MZAJ RIFI - CATEGORY PRODUCT CARDS
+أبيض + بوردر رمادي + توسيط المحتوى
+========================================================= */
+
+/* =========================================
+البطاقة نفسها
+========================================= */
+
+html body.mz-category-page .product-item {
+position: relative !important;
+
+background: #ffffff !important;
+background-color: #ffffff !important;
+
+border: 1px solid #e1e1e1 !important;
+border-radius: 10px !important;
+
+overflow: hidden !important;
+
+box-sizing: border-box !important;
+
+text-align: center !important;
+
+height: 100% !important;
+
+box-shadow: none !important;
+
+}
+
+/* لو القالب يضع البطاقة داخل prod-col */
+html body.mz-category-page .prod-col {
+text-align: center !important;
+}
+
+/* إلغاء الخلفية الوهمية القديمة إن وجدت */
+html body.mz-category-page .prod-col::before {
+display: none !important;
+content: none !important;
+}
+
+/* =========================================
+رابط المنتج
+========================================= */
+
+html body.mz-category-page .product-item > a {
+display: block !important;
+
+width: 100% !important;
+
+margin: 0 !important;
+
+text-align: center !important;
+
+background: transparent !important;
+
+}
+
+/* =========================================
+الصورة
+========================================= */
+
+html body.mz-category-page
+.product-item
+img[id^="product-card-img-"] {
+
+display: block !important;
+
+width: 100% !important;
+max-width: 100% !important;
+
+margin: 0 auto !important;
+
+border-radius: 9px 9px 0 0 !important;
+
+object-fit: contain !important;
+
+background: #ffffff !important;
+
+}
+
+/* =========================================
+توسيط جميع محتويات النص
+========================================= */
+
+html body.mz-category-page .product-item h1,
+html body.mz-category-page .product-item h2,
+html body.mz-category-page .product-item h3,
+html body.mz-category-page .product-item h4,
+html body.mz-category-page .product-item h5,
+html body.mz-category-page .product-item h6 {
+
+width: 100% !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+text-align: center !important;
+
+}
+
+/* النصوص */
+html body.mz-category-page .product-item p {
+width: 100% !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+text-align: center !important;
+
+}
+
+/* =========================================
+الحاويات الداخلية
+========================================= */
+
+html body.mz-category-page
+.product-item
+.d-flex {
+
+justify-content: center !important;
+align-items: center !important;
+
+text-align: center !important;
+
+}
+
+/* أي محتوى نصي داخل البطاقة /
+html body.mz-category-page
+.product-item
+[class="content"],
+
+html body.mz-category-page
+.product-item
+[class*="details"],
+
+html body.mz-category-page
+.product-item
+[class*="info"] {
+
+width: 100% !important;
+
+text-align: center !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+/* =========================================
+اسم المنتج
+========================================= */
+
+html body.mz-category-page
+.product-item
+.product-title,
+
+html body.mz-category-page
+.product-item
+[class*="product-name"],
+
+html body.mz-category-page
+.product-item
+[class*="product-title"] {
+
+width: 100% !important;
+
+display: block !important;
+
+text-align: center !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+/* =========================================
+السعر
+========================================= */
+
+html body.mz-category-page
+.product-item
+[class*="price"] {
+
+text-align: center !important;
+
+justify-content: center !important;
+
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+/* =========================================
+span
+نستثني شارة المنتج
+========================================= */
+
+html body.mz-category-page
+.product-item
+span(.badge-name-product-card) {
+
+text-align: center !important;
+
+}
+
+/* =========================================
+زر أضف إلى السلة
+نفس عرض البطاقة
+========================================= */
+
+html body.mz-category-page
+.product-item
+a.btn.btn-primary.btn-product-card-select-variant {
+
+width: 100% !important;
+min-width: 100% !important;
+max-width: 100% !important;
+
+margin: 0 !important;
+
+display: flex !important;
+
+align-items: center !important;
+justify-content: center !important;
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+text-align: center !important;
+
+border: 0 !important;
+
+border-radius: 0 0 9px 9px !important;
+
+}
+
+/* =========================================
+إظهار البنر كاملًا بدون قص - الرئيسية فقط
+========================================= */
+
+body[data-template="home"] .home > section {
+width: 100% !important;
+max-width: 100% !important;
+margin: 0 !important;
+padding: 0 !important;
+overflow: hidden !important;
+background: transparent !important;
+}
+
+body[data-template="home"] .home > section .container {
+width: 100% !important;
+max-width: 100% !important;
+margin: 0 auto !important;
+padding: 0 !important;
+}
+
+body[data-template="home"] .home > section .swiper,
+body[data-template="home"] .home > section .swiper-wrapper,
+body[data-template="home"] .home > section .swiper-slide {
+width: 100% !important;
+max-width: 100% !important;
+height: auto !important;
+min-height: auto !important;
+}
+
+body[data-template="home"] .home > section picture,
+body[data-template="home"] .home > section a {
+display: block !important;
+width: 100% !important;
+height: auto !important;
+}
+
+body[data-template="home"] .home > section img {
+display: block !important;
+width: 100% !important;
+max-width: 100% !important;
+height: auto !important;
+object-fit: contain !important;
+object-position: center center !important;
+margin: 0 auto !important;
+}
+
+/* إذا كان البنر معمول كخلفية وليس صورة img /
+body[data-template="home"] .home > section [style="background"] {
+background-size: contain !important;
+background-repeat: no-repeat !important;
+background-position: center center !important;
+}
+
+/* إلغاء أي ارتفاع ثابت قد يسبب القص */
+body[data-template="home"] .home > section *,
+body[data-template="home"] .home > section *::before,
+body[data-template="home"] .home > section *::after {
+max-height: none !important;
+}
+
+/* لو فيه كلاس يفرض قص على السلايدر */
+body[data-template="home"] .home > section .swiper-slide,
+body[data-template="home"] .home > section .swiper-slide > div {
+overflow: visible !important;
+}
+html body .dark.d-none.d-lg-block {
+background: #f9dee6 !important;
+background-color: #f9dee6 !important;
+}
+
+html body .dark.d-none.d-lg-block a {
+background: transparent !important;
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+}
+
+html body .dark.d-none.d-lg-block ul,
+html body .dark.d-none.d-lg-block li,
+html body .dark.d-none.d-lg-block nav,
+html body .dark.d-none.d-lg-block .container {
+background: transparent !important;
+background-color: transparent !important;
+}
+/* =========================================
+صندوق آراء العملاء - أبيض إجباري
+========================================= */
+
+html body .testimonials-customer-card,
+html body .testimonials-customer-card.bg-transparent {
+background: #ffffff !important;
+background-color: #ffffff !important;
+
+border: 0 !important;
+
+box-shadow: none !important;
+
+opacity: 1 !important;
+
+}
+
+/* فرض الأبيض على العناصر الداخلية أيضًا */
+html body .testimonials-customer-card > div,
+html body .testimonials-customer-card.bg-transparent > div {
+background-color: #ffffff !important;
+}
+
+/* لو slick نفسه يضيف شفافية */
+html body .testimonials-wrapper .slick-slide .testimonials-customer-card {
+background: #ffffff !important;
+background-color: #ffffff !important;
+}
+html body section.subTitle-detail {
+background: #ffeef4 !important;
+background-color: #ffeef4 !important;
+text-align: center !important;
+}
+
+html body section.subTitle-detail h1,
+html body section.subTitle-detail h2,
+html body section.subTitle-detail h3 {
+display: inline-block !important;
+
+margin: 0 auto !important;
+padding: 0 !important;
+
+text-align: center !important;
+
+font-weight: 700 !important;
+
+color: transparent !important;
+-webkit-text-fill-color: transparent !important;
+
+background-image: linear-gradient(
+    110deg,
+    #601f49 0%,
+    #7d285e 25%,
+    #b85389 42%,
+    #e99fbc 50%,
+    #b85389 58%,
+    #7d285e 75%,
+    #601f49 100%
+) !important;
+
+background-size: 300% 100% !important;
+
+-webkit-background-clip: text !important;
+background-clip: text !important;
+
+animation:
+    mz-category-title-color
+    4s
+    ease-in-out
+    infinite !important;
+
+}
+
+@keyframes mz-category-title-color {
+0% {
+background-position: 0% 50%;
+}
+
+50% {
+    background-position: 100% 50%;
+}
+
+100% {
+    background-position: 0% 50%;
+}
+
+}
+/* =========================================
+Breadcrumb - اللون الوردي المطلوب
+========================================= */
+
+html body section.breadcrumb-section nav ol.breadcrumb,
+html body section.breadcrumb-section ol.breadcrumb,
+html body ol.breadcrumb {
+background: #ffeef4 !important;
+background-color: #ffeef4 !important;
+
+border: 0 !important;
+box-shadow: none !important;
+
+}
+
+/* نخلي العناصر الداخلية شفافة /
+html body ol.breadcrumb li,
+html body ol.breadcrumb .breadcrumb-item,
+html body ol.breadcrumb a {
+background: transparent !important;
+background-color: transparent !important;
+}
+/ =========================================================
+PRODUCT PAGE - ACTION BUTTONS FINAL
+========================================================= */
+
+/* صف الأزرار */
+html body .mz-product-actions-row {
+width: 100% !important;
+
+display: flex !important;
+align-items: stretch !important;
+
+gap: 8px !important;
+
+margin: 12px 0 16px !important;
+padding: 0 !important;
+
+box-sizing: border-box !important;
+
+}
+
+/* =========================================
+الزران يأخذان كامل العرض
+========================================= */
+
+html body
+.mz-product-actions-row
+.mz-product-buy-btn,
+
+html body
+.mz-product-actions-row
+.mz-product-cart-btn {
+
+flex: 1 1 50% !important;
+
+width: 50% !important;
+max-width: none !important;
+min-width: 0 !important;
+
+min-height: 48px !important;
+
+margin: 0 !important;
+
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+
+text-align: center !important;
+
+border-radius: 7px !important;
+
+box-sizing: border-box !important;
+
+}
+
+/* =========================================
+زر أضف إلى السلة
+========================================= */
+
+html body
+.mz-product-actions-row
+.mz-product-cart-btn {
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+font-weight: 700 !important;
+
+border: 0 !important;
+
+background-color: #601f49 !important;
+
+background-image: linear-gradient(
+    110deg,
+    #601f49 0%,
+    #7d285e 28%,
+    #b65389 50%,
+    #7d285e 72%,
+    #601f49 100%
+) !important;
+
+background-size: 300% 100% !important;
+
+animation:
+    mz-product-cart-animation
+    4s
+    ease-in-out
+    infinite !important;
+
+box-shadow: none !important;
+
+}
+
+/* أي span أو icon داخل زر السلة أبيض */
+html body
+.mz-product-cart-btn *,
+html body
+.mz-product-cart-btn span,
+html body
+.mz-product-cart-btn i,
+html body
+.mz-product-cart-btn svg {
+
+color: #ffffff !important;
+fill: #ffffff !important;
+
+-webkit-text-fill-color:
+    #ffffff !important;
+
+}
+
+/* حركة الزر */
+@keyframes mz-product-cart-animation {
+
+0% {
+    background-position: 0% 50%;
+}
+
+50% {
+    background-position: 100% 50%;
+}
+
+100% {
+    background-position: 0% 50%;
+}
+
+}
+
+/* =========================================
+زر اشتر الآن
+========================================= */
+
+html body
+.mz-product-actions-row
+.mz-product-buy-btn {
+
+background: #ffeef4 !important;
+
+color: #6f1f49 !important;
+-webkit-text-fill-color:
+    #6f1f49 !important;
+
+border:
+    1px solid
+    #6f1f49 !important;
+
+font-weight: 700 !important;
+
+}
+
+/* Hover */
+html body
+.mz-product-actions-row
+.mz-product-cart-btn {
+
+box-shadow:
+    0 5px 14px
+    rgba(96,31,73,.20) !important;
+
+}
+
+/* =========================================================
+توسيط رقم الكمية داخل مربعه بالضبط
+========================================================= */
+
+/* الحاوية */
+html body .select-quantity-div .form-group > div {
+position: relative !important;
+
+width: 100px !important;
+height: 40px !important;
+
+margin: 0 auto !important;
+
+}
+
+/* الـ Select */
+html body #product-quantity {
+width: 100px !important;
+height: 40px !important;
+
+box-sizing: border-box !important;
+
+/* مساحة 36px على اليسار لمربع السهم */
+padding: 0 0 0 36px !important;
+
+margin: 0 !important;
+
+text-align: center !important;
+text-align-last: center !important;
+
+direction: ltr !important;
+
+line-height: 40px !important;
+
+background: #ffffff !important;
+
+border: 1px solid #d9d9d9 !important;
+border-radius: 5px !important;
+
+/* إلغاء سهم المتصفح */
+appearance: none !important;
+-webkit-appearance: none !important;
+-moz-appearance: none !important;
+
+}
+
+/* الخيارات */
+html body #product-quantity option {
+text-align: center !important;
+}
+
+/* الخط الفاصل لمربع السهم */
+html body .select-quantity-div .form-group > div::before {
+content: "" !important;
+
+position: absolute !important;
+
+left: 36px !important;
+top: 0 !important;
+
+width: 1px !important;
+height: 40px !important;
+
+background: #d9d9d9 !important;
+
+pointer-events: none !important;
+
+z-index: 2 !important;
+
+}
+
+/* السهم */
+html body .select-quantity-div .form-group > div::after {
+content: "⌄" !important;
+
+position: absolute !important;
+
+left: 0 !important;
+top: 0 !important;
+
+width: 36px !important;
+height: 40px !important;
+
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+
+color: #601f49 !important;
+
+font-size: 15px !important;
+line-height: 1 !important;
+
+pointer-events: none !important;
+
+z-index: 3 !important;
+
+}
+/* =========================================
+محاذاة وصف المنتج لليمين
+========================================= */
+
+html body #product-description .description-paragraph,
+html body #product-description .description-paragraph h1,
+html body #product-description .description-paragraph h2,
+html body #product-description .description-paragraph h3,
+html body #product-description .description-paragraph h4,
+html body #product-description .description-paragraph h5,
+html body #product-description .description-paragraph p,
+html body #product-description .description-paragraph div,
+html body #product-description .description-paragraph span {
+text-align: right !important;
+direction: rtl !important;
+}
+
+/* إزالة أي توسيط مفروض داخل النص */
+html body #product-description .description-text-clear * {
+text-align: right !important;
+direction: rtl !important;
+}
+
+/* =========================================================
+MZAJ RIFI - DESKTOP HEADER - CLEAN FINAL
+5 أقسام + أيقونة تسجيل بجوار السلة + شعار متوازن
+ملاحظة: موضع الحساب والشعار يحسبه JavaScript ديناميكياً
+========================================================= */
+
+@media (min-width: 992px) {
+
+/* إخفاء الصف القديم الخاص بالدخول/الدولة */
+html body .mz-hide-desktop-utility-row {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+html body .mz-hide-original-login,
+html body .mz-hide-country-btn {
+    display: none !important;
+}
+
+/* الهيدر الرئيسي */
+html body .search-header .search-header-bar.mz-desktop-header-bar,
+html body .search-header .search-header-bar,
+html body .search-header-bar {
+    position: relative !important;
+    min-height: 82px !important;
+    height: 82px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+html body .search-header {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+html body .search-header .container,
+html body .search-header .container-fluid {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* الشعار - الحجم فقط، أما الموضع فيحدده JavaScript */
+html body .search-header .header-logo {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+html body .search-header .header-logo > a {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+html body .search-header .header-logo img.image-logo.d-none.d-lg-block {
+    display: block !important;
+    width: auto !important;
+    height: 56px !important;
+    max-height: 56px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+}
+
+html body .search-header .header-logo img.image-logo.d-block.d-lg-none {
+    display: none !important;
+}
+
+/* أيقونة الحساب - لا نضع left/right كي لا نتعارض مع JavaScript */
+html body .mz-account-icon-btn {
+    width: 42px !important;
+    height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    z-index: 100 !important;
+    overflow: visible !important;
+    transition: transform .25s ease, background-color .25s ease !important;
+}
+
+html body .mz-account-icon-btn svg {
+    width: 35px !important;
+    height: 35px !important;
+    display: block !important;
+    fill: none !important;
+    stroke: #6f1f49 !important;
+    stroke-width: 1.7 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+    pointer-events: none !important;
+}
+
+html body .mz-account-icon-btn:hover {
+    background: rgba(111,31,73,.05) !important;
+    border-radius: 50% !important;
+}
+
+/* الأقسام الخمسة في المنتصف */
+html body .mz-desktop-categories-inline {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+
+    width: calc(100% - 430px) !important;
+    max-width: 980px !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: clamp(16px, 2vw, 32px) !important;
+
+    margin: 0 !important;
+    padding: 0 8px !important;
+
+    direction: rtl !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    z-index: 20 !important;
+}
+
+html body .mz-desktop-category-link {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+
+    margin: 0 !important;
+    padding: 4px 0 !important;
+
+    white-space: nowrap !important;
+    background: transparent !important;
+
+    color: #6f1f49 !important;
+    -webkit-text-fill-color: #6f1f49 !important;
+
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+
+    transition: color .25s ease, transform .25s ease !important;
+}
+
+html body .mz-desktop-category-link:hover {
+    color: #b54282 !important;
+    -webkit-text-fill-color: #b54282 !important;
+    transform: translateY(-1px) !important;
+}
+
+html body .mz-desktop-category-link::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: -2px !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 2px !important;
+    transform: translateX(-50%) !important;
+    background: #6f1f49 !important;
+    border-radius: 30px !important;
+    transition: width .25s ease !important;
+}
+
+html body .mz-desktop-category-link:hover::after {
+    width: 60% !important;
+}
+
+/* حذف ضريط الأقسام الأصلي ومساحته */
+html body .mz-desktop-categories-source {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+/* إزالة أي فراغ قبل أول محتوى */
+html body .main-content,
+html body .app-content,
+html body .home {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+}
+
+/* لابتوبات أصغر */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+html body .search-header .search-header-bar.mz-desktop-header-bar,
+html body .search-header .search-header-bar,
+html body .search-header-bar {
+min-height: 76px !important;
+height: 76px !important;
+}
+
+html body .search-header .header-logo img.image-logo.d-none.d-lg-block {
+    height: 50px !important;
+    max-height: 50px !important;
+}
+
+html body .mz-desktop-categories-inline {
+    width: calc(100% - 360px) !important;
+    gap: 12px !important;
+}
+
+html body .mz-desktop-category-link {
+    font-size: 12px !important;
+}
+
+}
+
+/* =========================================================
+MZAJ RIFI - CART ACTION BUTTONS - CLEAN FINAL
+زر إرسال + زر إتمام الطلب: نص أبيض + لمعان متحرك
+========================================================= */
+
+/* زر إتمام الطلب /
+html body a.btn.btn-primary.btn-lg.btn-block[href="checkout"],
+html body a.btn.btn-primary[href*="checkout"] {
+position: relative !important;
+overflow: hidden !important;
+background: #601f49 !important;
+border-color: #601f49 !important;
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+font-weight: 600 !important;
+transition: transform .25s ease, box-shadow .25s ease !important;
+}
+
+/* زر إرسال قسيمة الخصم /
+html body [class="coupon"] button.btn.btn-primary,
+html body [class*="coupon"] .btn.btn-primary[type="button"],
+html body [class*="coupon"] .btn.btn-primary[type="submit"] {
+position: relative !important;
+overflow: hidden !important;
+background: #601f49 !important;
+border-color: #601f49 !important;
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+font-weight: 600 !important;
+transition: transform .25s ease, box-shadow .25s ease !important;
+}
+
+/* أي عنصر داخلي داخل الزرين /
+html body a.btn.btn-primary[href="checkout"] ,
+html body [class="coupon"] button.btn.btn-primary * {
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+}
+
+/* اللمعة /
+html body a.btn.btn-primary[href="checkout"]::before,
+html body [class*="coupon"] button.btn.btn-primary::before {
+content: "" !important;
+position: absolute !important;
+top: 0 !important;
+bottom: 0 !important;
+left: -65% !important;
+width: 38% !important;
+
+background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 25%,
+    rgba(255,255,255,.52) 50%,
+    rgba(255,255,255,.08) 75%,
+    transparent 100%
+) !important;
+
+transform: skewX(-22deg) !important;
+animation: mzCartActionShine 2.2s ease-in-out infinite !important;
+pointer-events: none !important;
+
+}
+
+/* Hover /
+html body a.btn.btn-primary[href="checkout"],
+html body [class*="coupon"] button.btn.btn-primary {
+background: #711f56 !important;
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+transform: translateY(-1px) !important;
+box-shadow: 0 7px 18px rgba(96,31,73,.23) !important;
+}
+
+@keyframes mzCartActionShine {
+0% {
+left: -65%;
+}
+
+45%,
+100% {
+    left: 130%;
+}
+
+}
+/* =========================================
+إخفاء سعر السلة من هيدر اللابتوب
+========================================= */
+
+@media (min-width: 992px) {
+
+html body h3.cart-header-total {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+}
+
+}
+/* =========================================
+أنميشن أسماء التصنيفات - توتي / زهري
+========================================= */
+
+/* رابط/عنوان التصنيف /
+html body .category-items a span,
+html body .category-item a span,
+html body a[href="/categories/"] span {
+background: linear-gradient(
+90deg,
+#7a1f49 0%,
+#c04d87 25%,
+#f2acc0 50%,
+#c04d87 75%,
+#7a1f49 100%
+);
+background-size: 250% 100%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+
+animation: mzajCategoryTextFlow 4s linear infinite;
+font-weight: 700 !important;
+transition: transform 0.3s ease, opacity 0.3s ease;
+display: inline-block;
+
+}
+
+/* حركة خفيفة عند المرور /
+html body .category-items a span,
+html body .category-item a span,
+html body a[href="/categories/"] span {
+transform: scale(1.03);
+opacity: 0.95;
+}
+
+/* الحركة /
+@keyframes mzajCategoryTextFlow {
+0% {
+background-position: 0% 50%;
+}
+100% {
+background-position: 200% 50%;
+}
+}
+/ =========================================================
+إلغاء أنميشن التصنيفات داخل القائمة الجانبية فقط
+========================================================= */
+
+html body .mz-rifi-side-menu a span,
+html body .mz-rifi-side-menu .clickable-span,
+html body .mz-rifi-side-menu span {
+background: none !important;
+background-image: none !important;
+
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+animation: none !important;
+transform: none !important;
+
+text-shadow: none !important;
+opacity: 1 !important;
+
+}
+/* =========================================================
+توحيد سماكة خط القائمة الجانبية مع الهيدر
+========================================================= */
+
+/* جميع روابط الأقسام */
+html body .mz-rifi-side-menu li > a,
+html body .mz-rifi-side-menu .menu-link,
+html body .mz-rifi-side-menu li > a span,
+html body .mz-rifi-side-menu .menu-link span,
+html body .mz-rifi-side-menu .clickable-span {
+font-weight: 500 !important;
+
+font-family: inherit !important;
+
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+}
+
+/* عنوان القائمة الرئيسية يبقى أوضح */
+html body .mz-rifi-side-menu .mz-menu-main-title,
+html body .mz-rifi-side-menu .mz-menu-main-title > span {
+font-weight: 700 !important;
+
+color: #ffffff !important;
+-webkit-text-fill-color: #ffffff !important;
+
+}
+/* =========================================================
+MZAJ RIFI - FOOTER FINAL V4
+Flower Background + JS Separators
+========================================================= */
+
+/* =========================================
+الفوتر
+========================================= */
+
+html body .footer-store-section,
+html body footer .footer-store-section,
+html body footer section.footer-theme-bg {
+position: relative !important;
+overflow: hidden !important;
+
+background: transparent !important;
+
+isolation: isolate !important;
+
+}
+
+/* =========================================
+صورة الورد
+========================================= */
+
+html body .footer-store-section::before,
+html body footer section.footer-theme-bg::before {
+content: "" !important;
+
+position: absolute !important;
+inset: 0 !important;
+
+width: 100% !important;
+height: 100% !important;
+
+background-image:
+    url("https://res.cloudinary.com/ikuuccsf/image/upload/v1789569646/a7400d5e-c0af-4273-b757-03397887e2af.webp")
+    !important;
+
+background-repeat: no-repeat !important;
+background-position: center center !important;
+background-size: cover !important;
+
+/*
+   رفعنا وضوح الورود
+*/
+opacity: .52 !important;
+
+filter:
+    brightness(1.01)
+    saturate(.98)
+    contrast(1.03)
+    !important;
+
+pointer-events: none !important;
+
+z-index: -2 !important;
+
+}
+
+/* طبقة بيضاء أخف من السابق
+حتى تظهر الورود أكثر */
+html body .footer-store-section::after,
+html body footer section.footer-theme-bg::after {
+content: "" !important;
+
+position: absolute !important;
+inset: 0 !important;
+
+background:
+    rgba(255,255,255,.38)
+    !important;
+
+pointer-events: none !important;
+
+z-index: -1 !important;
+
+}
+
+/* المحتوى فوق الصورة */
+html body .footer-store-section > *,
+html body footer section.footer-theme-bg > *,
+html body .footer-store-section .container,
+html body footer section.footer-theme-bg .container {
+position: relative !important;
+z-index: 3 !important;
+}
+
+/* =========================================
+العناوين
+========================================= */
+
+html body .footer-store-section h2,
+html body .footer-store-section h3,
+html body .footer-store-section h4,
+html body .footer-store-section .footer-title,
+
+html body footer section.footer-theme-bg h2,
+html body footer section.footer-theme-bg h3,
+html body footer section.footer-theme-bg h4 {
+position: relative !important;
+
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+font-weight: 700 !important;
+
+margin-bottom: 14px !important;
+
+}
+
+/* =========================================
+النصوص
+========================================= */
+
+html body .footer-store-section p,
+html body .footer-store-section li,
+
+html body footer section.footer-theme-bg p,
+html body footer section.footer-theme-bg li {
+color: #685965 !important;
+}
+
+/* الروابط */
+html body .footer-store-section a,
+html body footer section.footer-theme-bg a {
+color: #685965 !important;
+
+text-decoration: none !important;
+
+transition:
+    color .25s ease,
+    transform .25s ease
+    !important;
+
+}
+
+html body .footer-store-section a,
+html body footer section.footer-theme-bg a {
+color: #6f1f49 !important;
+
+transform:
+    translateY(-1px) !important;
+
+}
+
+/* =========================================================
+SOCIAL ICONS - توتي
+========================================================= */
+
+html body .footer-store-section a[href*="instagram"],
+html body .footer-store-section a[href*="snapchat"],
+html body .footer-store-section a[href*="tiktok"],
+html body .footer-store-section a[href*="twitter"],
+html body .footer-store-section a[href*="x.com"],
+html body .footer-store-section a[href^="tel:"],
+html body .footer-store-section a[href^="mailto:"],
+
+html body footer section.footer-theme-bg a[href*="instagram"],
+html body footer section.footer-theme-bg a[href*="snapchat"],
+html body footer section.footer-theme-bg a[href*="tiktok"],
+html body footer section.footer-theme-bg a[href*="twitter"],
+html body footer section.footer-theme-bg a[href*="x.com"],
+html body footer section.footer-theme-bg a[href^="tel:"],
+html body footer section.footer-theme-bg a[href^="mailto:"] {
+
+color: #6f1f49 !important;
+
+-webkit-text-fill-color:
+    #6f1f49 !important;
+
+border-color:
+    #6f1f49 !important;
+
+}
+
+/* Font Icons /
+html body .footer-store-section a[href="instagram"] i,
+html body .footer-store-section a[href*="snapchat"] i,
+html body .footer-store-section a[href*="tiktok"] i,
+html body .footer-store-section a[href*="twitter"] i,
+html body .footer-store-section a[href*="x.com"] i,
+html body .footer-store-section a[href^="tel:"] i,
+html body .footer-store-section a[href^="mailto:"] i {
+color: #6f1f49 !important;
+
+-webkit-text-fill-color:
+    #6f1f49 !important;
+
+}
+
+/* SVG Social /
+html body .footer-store-section a[href="instagram"] svg,
+html body .footer-store-section a[href*="snapchat"] svg,
+html body .footer-store-section a[href*="tiktok"] svg,
+html body .footer-store-section a[href*="twitter"] svg,
+html body .footer-store-section a[href*="x.com"] svg,
+html body .footer-store-section a[href^="tel:"] svg,
+html body .footer-store-section a[href^="mailto:"] svg {
+
+color: #6f1f49 !important;
+
+fill: #6f1f49 !important;
+stroke: #6f1f49 !important;
+
+}
+
+/* Hover /
+html body .footer-store-section a[href="instagram"],
+html body .footer-store-section a[href*="snapchat"],
+html body .footer-store-section a[href*="tiktok"],
+html body .footer-store-section a[href*="twitter"],
+html body .footer-store-section a[href*="x.com"],
+html body .footer-store-section a[href^="tel:"],
+html body .footer-store-section a[href^="mailto:"] {
+
+color: #aa4779 !important;
+
+transform:
+    translateY(-3px)
+    scale(1.06)
+    !important;
+
+}
+
+/* =========================================================
+الفاصل الأفقي الذي سيضيفه JavaScript
+========================================================= */
+
+.mz-footer-section-separator {
+position: relative !important;
+
+width: 76% !important;
+height: 24px !important;
+
+margin:
+    20px auto 24px !important;
+
+display: flex !important;
+
+align-items: center !important;
+justify-content: center !important;
+
+clear: both !important;
+
+pointer-events: none !important;
+
+}
+
+/* الخط */
+.mz-footer-section-separator::before {
+content: "" !important;
+
+position: absolute !important;
+
+left: 0 !important;
+right: 0 !important;
+
+top: 50% !important;
+
+height: 2px !important;
+
+transform:
+    translateY(-50%)
+    scaleX(.85);
+
+background:
+    linear-gradient(
+        to right,
+
+        transparent,
+
+        rgba(111,31,73,.16),
+
+        rgba(189,77,135,.48),
+
+        rgba(236,174,204,1),
+
+        rgba(189,77,135,.48),
+
+        rgba(111,31,73,.16),
+
+        transparent
+    )
+    !important;
+
+border-radius:
+    100px !important;
+
+animation:
+    mzFooterSeparatorLine
+    3.2s ease-in-out
+    infinite
+    !important;
+
+}
+
+/* الدائرة والزخرفة */
+.mz-footer-section-separator::after {
+content: "✦" !important;
+
+position: relative !important;
+
+width: 22px !important;
+height: 22px !important;
+
+display: flex !important;
+
+align-items: center !important;
+justify-content: center !important;
+
+border-radius:
+    50% !important;
+
+background:
+    rgba(255,255,255,.94)
+    !important;
+
+color:
+    #8d3560 !important;
+
+-webkit-text-fill-color:
+    #8d3560 !important;
+
+border:
+    1px solid
+    rgba(111,31,73,.18)
+    !important;
+
+font-size:
+    10px !important;
+
+box-shadow:
+    0 0 0 5px
+    rgba(255,255,255,.53),
+    0 3px 10px
+    rgba(111,31,73,.09)
+    !important;
+
+z-index: 2 !important;
+
+animation:
+    mzFooterSeparatorIcon
+    3.2s ease-in-out
+    infinite
+    !important;
+
+}
+
+/* =========================================================
+Vertical Desktop Separator
+========================================================= */
+
+.mz-footer-desktop-vseparator {
+position: absolute !important;
+
+top: 12% !important;
+
+width: 24px !important;
+height: 76% !important;
+
+transform:
+    translateX(-50%) !important;
+
+pointer-events: none !important;
+
+z-index: 8 !important;
+
+}
+
+.mz-footer-desktop-vseparator::before {
+content: "" !important;
+
+position: absolute !important;
+
+left: 50% !important;
+top: 0 !important;
+
+width: 2px !important;
+height: 100% !important;
+
+transform:
+    translateX(-50%)
+    scaleY(.85);
+
+background:
+    linear-gradient(
+        to bottom,
+
+        transparent,
+
+        rgba(111,31,73,.16),
+
+        rgba(189,77,135,.48),
+
+        rgba(236,174,204,1),
+
+        rgba(189,77,135,.48),
+
+        rgba(111,31,73,.16),
+
+        transparent
+    )
+    !important;
+
+border-radius:
+    100px !important;
+
+animation:
+    mzFooterVerticalLine
+    3.2s ease-in-out
+    infinite
+    !important;
+
+}
+
+.mz-footer-desktop-vseparator::after {
+content: "✦" !important;
+
+position: absolute !important;
+
+left: 50% !important;
+top: 50% !important;
+
+width: 22px !important;
+height: 22px !important;
+
+display: flex !important;
+
+align-items: center !important;
+justify-content: center !important;
+
+border-radius:
+    50% !important;
+
+background:
+    rgba(255,255,255,.94)
+    !important;
+
+color:
+    #8d3560 !important;
+
+-webkit-text-fill-color:
+    #8d3560 !important;
+
+border:
+    1px solid
+    rgba(111,31,73,.18)
+    !important;
+
+font-size:
+    10px !important;
+
+box-shadow:
+    0 0 0 5px
+    rgba(255,255,255,.53)
+    !important;
+
+transform:
+    translate(-50%, -50%)
+    scale(.92);
+
+animation:
+    mzFooterVerticalIcon
+    3.2s ease-in-out
+    infinite
+    !important;
+
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+/* الصورة أوضح من السابق */
+html body .footer-store-section::before,
+html body footer section.footer-theme-bg::before {
+    opacity:
+        .45 !important;
+
+    background-position:
+        center center !important;
+
+    background-size:
+        cover !important;
+}
+
+
+html body .footer-store-section::after,
+html body footer section.footer-theme-bg::after {
+    background:
+        rgba(255,255,255,.46)
+        !important;
+}
+
+
+.mz-footer-section-separator {
+    width:
+        76% !important;
+
+    margin:
+        17px auto 20px !important;
+}
+
+
+/*
+   في الموبايل لا نحتاج
+   الفواصل العمودية
+*/
+.mz-footer-desktop-vseparator {
+    display:
+        none !important;
+}
+
+}
+
+/* =========================================================
+DESKTOP
+========================================================= */
+
+@media (min-width: 769px) {
+
+html body .footer-store-section,
+html body footer section.footer-theme-bg {
+    padding-top:
+        34px !important;
+
+    padding-bottom:
+        34px !important;
+}
+
+}
+
+/* =========================================================
+ANIMATIONS
+========================================================= */
+
+@keyframes mzFooterSeparatorLine {
+
+0%,
+100% {
+    opacity: .50;
+
+    transform:
+        translateY(-50%)
+        scaleX(.78);
+}
+
+50% {
+    opacity: 1;
+
+    transform:
+        translateY(-50%)
+        scaleX(1);
+}
+
+}
+
+@keyframes mzFooterSeparatorIcon {
+
+0%,
+100% {
+    transform:
+        scale(.90)
+        rotate(0deg);
+
+    opacity:
+        .78;
+}
+
+50% {
+    transform:
+        scale(1.12)
+        rotate(45deg);
+
+    opacity:
+        1;
+}
+
+}
+
+@keyframes mzFooterVerticalLine {
+
+0%,
+100% {
+    opacity:
+        .50;
+
+    transform:
+        translateX(-50%)
+        scaleY(.78);
+}
+
+50% {
+    opacity:
+        1;
+
+    transform:
+        translateX(-50%)
+        scaleY(1);
+}
+
+}
+
+@keyframes mzFooterVerticalIcon {
+
+0%,
+100% {
+    transform:
+        translate(-50%, -50%)
+        scale(.90)
+        rotate(0deg);
+
+    opacity:
+        .78;
+}
+
+50% {
+    transform:
+        translate(-50%, -50%)
+        scale(1.12)
+        rotate(45deg);
+
+    opacity:
+        1;
+}
+
+}
+/* =========================================================
+FOOTER ROUNDED
+========================================================= */
+
+html body .footer-store-section,
+html body footer .footer-store-section,
+html body footer section.footer-theme-bg {
+border-radius: 24px !important;
+overflow: hidden !important;
+
+/* مساحة بسيطة حتى يظهر الراوندد */
+width: calc(100% - 32px) !important;
+margin-left: auto !important;
+margin-right: auto !important;
+
+box-sizing: border-box !important;
+
+}
+
+/* الموبايل */
+@media (max-width: 768px) {
+
+html body .footer-store-section,
+html body footer .footer-store-section,
+html body footer section.footer-theme-bg {
+    width: calc(100% - 20px) !important;
+    border-radius: 18px !important;
+}
+
+}
+/* =========================================================
+MZAJ RIFI - FOOTER TYPOGRAPHY FINAL
+يعتمد على الكلاسات التي أضافها JavaScript بالفعل
+========================================================= */
+
+/* =========================================
+عناوين الفوتر
+من نحن - روابط مهمة - موقعنا - تواصل معنا
+========================================= */
+
+html body
+.footer-store-section
+.mz-footer-typo-title,
+
+html body
+footer
+.mz-footer-typo-title {
+
+font-size: 25px !important;
+line-height: 1.45 !important;
+
+font-weight: 700 !important;
+
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+margin-bottom: 16px !important;
+
+}
+
+/* =========================================
+النصوص العادية داخل الفوتر
+========================================= */
+
+html body
+.footer-store-section
+.mz-footer-typo-text,
+
+html body
+footer
+.mz-footer-typo-text {
+
+font-size: 17px !important;
+line-height: 1.9 !important;
+
+font-weight: 400 !important;
+
+}
+
+/* =========================================
+روابط "روابط مهمة"
+========================================= */
+
+html body
+.footer-store-section
+a.mz-footer-typo-text,
+
+html body
+footer
+a.mz-footer-typo-text {
+
+font-size: 17px !important;
+line-height: 2 !important;
+
+font-weight: 400 !important;
+
+color: #685965 !important;
+-webkit-text-fill-color: #685965 !important;
+
+transition:
+    color .25s ease,
+    transform .25s ease
+    !important;
+
+}
+
+html body
+.footer-store-section
+a.mz-footer-typo-text,
+
+html body
+footer
+a.mz-footer-typo-text {
+
+color: #6f1f49 !important;
+-webkit-text-fill-color: #6f1f49 !important;
+
+transform: translateY(-1px) !important;
+
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+/* العناوين */
+html body
+.footer-store-section
+.mz-footer-typo-title,
+
+html body
+footer
+.mz-footer-typo-title {
+
+    font-size: 22px !important;
+    line-height: 1.45 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* النصوص */
+html body
+.footer-store-section
+.mz-footer-typo-text,
+
+html body
+footer
+.mz-footer-typo-text {
+
+    font-size: 16.5px !important;
+    line-height: 1.9 !important;
+}
+
+
+/* الروابط */
+html body
+.footer-store-section
+a.mz-footer-typo-text,
+
+html body
+footer
+a.mz-footer-typo-text {
+
+    font-size: 16.5px !important;
+    line-height: 2 !important;
+}
+
+}
+
+/* ========================================================
+LAPTOP
+========================================================= */
+
+@media (min-width: 769px) {
+
+html body
+.footer-store-section
+.mz-footer-typo-title,
+
+html body
+footer
+.mz-footer-typo-title {
+
+    font-size: 25px !important;
+}
+
+
+html body
+.footer-store-section
+.mz-footer-typo-text,
+
+html body
+footer
+.mz-footer-typo-text {
+
+    font-size: 17px !important;
+}
+
+
+html body
+.footer-store-section
+a.mz-footer-typo-text,
+
+html body
+footer
+a.mz-footer-typo-text {
+
+    font-size: 17px !important;
+}
+
+}
+/* =========================================================
+تقليل المسافة بين فاصل الفوتر وعنوان القسم - Mobile
+========================================================= */
+
+@media (max-width: 768px) {
+
+/* تصغير مساحة الفاصل نفسه */
+html body .mz-footer-section-separator {
+    height: 16px !important;
+
+    margin-top: 8px !important;
+    margin-bottom: 5px !important;
+}
+
+/* العنوان الٰي يأتي مباشرة بعد الفاصل */
+html body
+.mz-footer-section-separator
++ .mz-footer-typo-title {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+}
+/* ==========================================================
+تقليل المسافة حول رابط "موقعنا" فقط
+========================================================= */
+
+/* النص/رابط الموقع /
+html body footer
+a.mz-footer-typo-text[href="maps"],
+html body .footer-store-section
+a.mz-footer-typo-text[href*="maps"] {
+
+line-height: 1.45 !important;
+
+margin-top: 0 !important;
+margin-bottom: 0 !important;
+
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+
+}
+
+/* العنصر الأب الذي يحتوي رابط الموقع /
+html body footer
+p(a.mz-footer-typo-text[href="maps"]),
+html body .footer-store-section
+p(a.mz-footer-typo-text[href*="maps"]) {
+
+margin-top: 6px !important;
+margin-bottom: 6px !important;
+
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+
+line-height: 1.45 !important;
+
+}
+
+/* الموبايل */
+@media (max-width: 768px) {
+
+html body footer
+a.mz-footer-typo-text[href*="maps"],
+html body .footer-store-section
+a.mz-footer-typo-text[href*="maps"] {
+
+    line-height: 1.4 !important;
+}
+
+
+html body footer
+p:has(a.mz-footer-typo-text[href*="maps"]),
+html body .footer-store-section
+p:has(a.mz-footer-typo-text[href*="maps"]) {
+
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}
+
+}
+/* وصف المنتج المختصر - محاذاة لليمين */
+html body .col-product-info-single-image > section > h3 {
+text-align: right !important;
+direction: rtl !important;
+width: 100% !important;
+
+margin: 6px 0 !important;
+padding: 0 !important;
+
+}
